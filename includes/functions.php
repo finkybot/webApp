@@ -7,7 +7,7 @@
         $aQend = ending of the query
 
         Author  K.Abraham 
-        Date    26/12/2016 
+        Date    26/03/2019 
     **/
     function buildQuery($aQstart, $aQry, $aQend)
     {
@@ -28,7 +28,7 @@
         if a value is null returns $val
 
         Author K.Abraham
-        Date 11/02/2019
+        Date 11/03/2019
     **/
     function checkValue($aValue,$val)
     {
@@ -46,7 +46,7 @@
         prepares and returns a sql statement of execution
        
         Author K.Abraham
-        Date 11/02/2019
+        Date 11/03/2019
     **/
     function prepState($aStatement,$aString,$aParam)
     {
@@ -59,7 +59,7 @@
         reads and returns the list of a directory
         
         Author K.Abraham
-        Date 11/02/2019
+        Date 11/03/2019
     **/
     function getDirectoryList ($directory) 
     {
@@ -90,14 +90,15 @@
         creates a table an populates its with values
 
         Author K.Abraham
-        Date 11/02/2019
+        Date 11/03/2019
     **/
-    function createTable($tableInit, $fList)
+    function createTable($tableInit, $loc, $fList)
     {
         echo $tableInit;
         $row = 0;
         $currentFile = 0;
         $size = sizeof($fList);
+        $_SESSION['loc'] = $loc;
         $_SESSION['file'] = $fList;
         while($row<=($size/4))
         {

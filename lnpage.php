@@ -20,12 +20,14 @@
 </head>
 <?php
     require_once 'includes/functions.php';
-    $files = getDirectoryList('/var/www/other/test');
+    $loc = $_SESSION['location'];
+    $files = getDirectoryList($loc);
+    $_SESSION['imgloc'] = $loc;
 
   echo '<body>
             <div class="mainPar"><div class="caption" style="top: 10%"> <span class="border">Client image download section</span></div>
             <div class="caption" style="top: 20%">';
-            createTable('<table id="tData"',$files);          
+            createTable('<table id="tData"',$loc ,$files);          
   echo      '</span></div></div>
             <div class="content" style="top: 5% !important"><h3 style="text-align: center;">Select your images for downloading</h3>
             <p>Downloaded images go here, users will be able to select and download from any image made available here.<br/>

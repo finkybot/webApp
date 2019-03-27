@@ -14,10 +14,12 @@ require 'classes/mysql.php';
             if($result)
             {
                 $_SESSION['status'] = 'authorized';
+                $_SESSION['location'] = $result;
                 return true;
             }
             else return false;
         }
+
 
         // userLogOut()
         // logs the user out and clears session
@@ -43,6 +45,7 @@ require 'classes/mysql.php';
             session_start();
             if($_SESSION['status'] != 'authorized') header("location: index.html");
         }
+
     }
 
 
