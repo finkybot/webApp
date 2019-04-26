@@ -53,37 +53,4 @@
         return $results;
     }
 
-    /** 
-        function createTable()
-        creates a table an populates its with values
-    **/
-    function createTable($tableInit, $location, $images)
-    {
-        echo $tableInit;
-        $row = 0;
-        $currentFile = 0;
-        $iSum = sizeof($images);
-
-        //$_SESSION['loc'] = $location;
-        $_SESSION['file'] = $iSum;
-        while($row<=$iSum)
-        {
-            echo "<tr>";
-            if ($currentFile <= $iSum)
-            {
-                echo '<td>';
-                //$images[$currentFile]->loadImage($location);
-                echo "<img src=\"imageLoader.php?val=" . $currentFile . "\" style=\"max-width: 80vw; max-height: 80vh; object-fit: contain\"/>";
-                echo '</td>';
-            }
-            else 
-            {
-                echo '<td> </td>';
-            }
-           
-            $currentFile++;
-            echo "</tr>";
-            $row++;
-        }
-        echo "</table>";
-    }
+    

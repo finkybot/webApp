@@ -6,6 +6,8 @@ table {padding-left: 16px; padding-top: 16px} /* Format for table */
 table.resultTab { width: 100%; padding-left: 8px; text-align: center}
 table.normal { width: 100%; padding-left: 8px; padding-right: 8px}
 
+.buttonMov {height: 8vh;width: 100%; background-repeat:no-repeat; border: none; background-color: transparent; outline: none;}
+
 #tData {font-family: Arial; margin-left: auto; margin-right: auto; color: lightseagreen; width: 50%; height: 100px; text-align: center; padding: 8px}
 
 .caption {position: absolute; left: 0; width: 100%; text-align: center; color: #fff}
@@ -21,15 +23,26 @@ table.normal { width: 100%; padding-left: 8px; padding-right: 8px}
 .menu:hover {background: #aaa} /* Formatting for hovering over hyperlinks */
 
 
-@media screen and (min-width: 960px) {.caption span.border{font-size: 3vw; letter-spacing: 6px} 
-                    .floating-menu {font-size: 42px; padding: 5px; width: 100%; height: auto}
-                    .topBar, .midBar, .btmBar {background-attachment: scroll}}
+@media  (min-width: 960px) 
+{
+    .caption span.border{font-size: 3vw; letter-spacing: 6px} 
+    .floating-menu {font-size: 32px; padding: 5px; width: 100%; height: auto}
+    .topBar, .midBar, .btmBar {background-attachment: scroll}
+    .buttonMov {height: 12vh;width: 100%;}
+}
 
-@media screen and (max-width: 959px) {.caption span.border{font-size: 2vw; letter-spacing: 4px} 
-                    .floating-menu {font-size: 32px; padding: 5px; width: 100%; height: auto}
-                    .topBar, .midBar, .btmBar {background-attachment: scroll}}
+@media (max-width: 959px) 
+{
+    .caption span.border{font-size: 2vw; letter-spacing: 4px}
+    .floating-menu {font-size: 32px; padding: 5px; width: 100%; height: auto}
+    .topBar, .midBar, .btmBar {background-attachment: scroll}
+    .buttonMov {height: 8vh;width: 100%;}
+}
 
-@media screen and (max-width: 480px) {.caption span.border{font-size: 2vw; letter-spacing: 2px} 
-                    .floating-menu {font-size: 28px; padding: 5px; width: 100%; height: auto}
-                    .topBar, .midBar, .btmBar {background-attachment: scroll}}
+@media (max-width: 480px) 
+{
+    .caption span.border{font-size: 2vw; letter-spacing: 2px} 
+    .floating-menu {font-size: 28px; padding: 5px; width: 100%; height: auto}
+    .topBar, .midBar, .btmBar {background-attachment: scroll}
+}
 /* end of CSS */

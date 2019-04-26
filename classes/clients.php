@@ -34,7 +34,6 @@ require_once 'classes/mysql.php';
 
                 $this->getImageList();
                 // set data into an array
-                // $this->images =array();
 
                 return true;
             }
@@ -121,6 +120,7 @@ require_once 'classes/mysql.php';
         {
             return sizeof($this->images);
         }
+
     }
 
 
