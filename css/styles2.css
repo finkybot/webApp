@@ -1,5 +1,6 @@
 body, html {height: 100%; margin: 0; font: 400 18px/1.8 "Lato", sans-serif; color: #000;}
-h3 {letter-spacing: 3px; text-transform: uppercase; font: 30px "Lato", sans-serif; color: #222}
+body {background-image: url("../img/img_flwr1.jpg"); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;}
+
 
 table {padding-left: 16px; padding-top: 16px} /* Format for table */
 table.resultTab { width: 100%; padding-left: 8px; text-align: center}
@@ -10,16 +11,7 @@ table.normal { width: 100%; padding-left: 8px; padding-right: 8px}
 .caption {position: absolute; left: 0; width: 100%; text-align: center; color: #fff}
 .caption span.border {background-color: #111; color: #fff; padding: 18px; font-size: 32px; letter-spacing: 8px}
 
-.topPar, .midPar, .btmPar, .mainPar {position: relative; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
-.topPar {background-image: url("../img/img_issac.jpg"); min-height: 100%;}
-.midPar {background-image: url("../img/img_wedshoes.jpg"); opacity: 0.45; min-height: 50%}
-.btmPar {background-image: url("../img/img_crown.jpg"); opacity: 0.85; min-height: 100%}
-
 .mainPar {background-image: url("../img/img_flwr1.jpg"); min-height: 100%}
-
-.content {background-color: #fff; color: #777; text-align: center; padding: 40px 60px} /* content area layer */
-.midContent {background-color: #999; color: #fff; text-align: center; padding: 40px 60px} /* content area layer */
-.lowContent {background-color: #fff; color: #777; text-align: center; padding: 40px 60px} /* content area layer */
 
 .floating-menu {background: grey; padding: 5px; width: 100%; z-index: 100; position: fixed; opacity: 0.8}
 .floating-menu a, .floating-menu h3 {font-size: 0.9em; display: block; margin: 0 0.5em; color: white}
@@ -28,25 +20,6 @@ table.normal { width: 100%; padding-left: 8px; padding-right: 8px}
 .menu {display: inline-block; height: 24px; width: 100px; text-align: center; font-size: 14px; font-weight: bold; margin: 0 0.5em;} /* Formatting for the navigation hyperlinks */
 .menu:hover {background: #aaa} /* Formatting for hovering over hyperlinks */
 
-/*input fields */
-input[type=text], input[type=password] {width: 100%; padding: 12px 12px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; box-sizing: border-box}
-
-button {background-color: #444; color: white; padding: 6px 6px; border: none; cursor: pointer; width: 100%;} /*button style */
-button:hover {opacity: 0.8;}
-
-span.psw {float: right; padding-top: 16px}
-img.avatar {width: 40%; border-radius: 50%}
-
-.cancelbtn {width: auto; padding: 10px 18px; background-color: #f44336} /*cancel button style*/
-.imgcontainer {text-align: center; margin: 24px 0 12px 0; position: relative} /* Center the image and position the close button */
-.container {padding: 16px}
-
-.modal {display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: black;   background-color: rgba(0,0,0,0.4); padding-top: 60px} /*model settings*/
-.modal-content {background-color: #fefefe; margin: 5% auto 15% auto; border: 1px solid #888; width: 60%}
-.close { position: absolute; right: 25px; top: 0; color: #000; font-size: 35px; font-weight: bold} /*Close Button X*/
-.close:hover, .close:focus {color: red; cursor: pointer}
-
-.animateZoom {animation:animatezoom 0.6s}@keyframes animatezoom{from{transform:scale(0)} to{transform:scale(1)}}
 
 @media screen and (min-width: 960px) {.caption span.border{font-size: 3vw; letter-spacing: 6px} 
                     .floating-menu {font-size: 42px; padding: 5px; width: 100%; height: auto}

@@ -30,7 +30,7 @@
             $query = "SELECT loc FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
             
             // attempt to prepare query 
-            if($stmt = $this->conn->prepare($query))
+            if($stmt = $this->conn->prepare($query)) // check the statement
             {
                 // add paremeters and execute query
                 $stmt->bind_param('ss',$usrId, $pwd);
@@ -41,7 +41,7 @@
                 if($stmt->fetch())
                 {
                     $stmt->close();
-                    $result = $location; // (user found) set returning var to true
+                    $result = $location; // (user found) set returning var to the location
                     //printf("%s", $name);
                 }
             }
@@ -53,6 +53,38 @@
 
             $this->conn->close(); // close database connection
             return $result; // return $result;
+        }
+
+        // behavior: get the file names for each image per
+        // or inform user username/password is wrong
+        function getImageLists($usrId)
+        {
+            $results = []; // create an array for the results
+            $query = "SELECT iname FROM images WHERE uName = ?"; // SQL query
+
+            // attempt to prepare query 
+            if($stmt = $this->conn->prepare($query)) // check the statement
+            {
+                // add paremeters and execute query
+                $stmt->bind_param('s',$usrId);
+                $stmt->execute();
+
+                $stmt->bind_result($userImages);
+
+                $i = 0;
+
+                while($stmt->fetch())
+                {
+                    $i++;
+                    $results[$i] = $userImages;
+                }
+
+                $stmt->close();
+            }
+
+            $this->conn->close(); // close database connection
+            return $results; // return $result;
+
         }
 
     }
