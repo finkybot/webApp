@@ -1,34 +1,8 @@
 <?php
-    /**
-        function buildQuery()
-        builds and returns a query to be used in the database 
-        $aQstart = start of query
-        $aQry = $_POST $keys and $values
-        $aQend = ending of the query
-
-        Author  K.Abraham 
-        Date    24/04/2019 
-    **/
-    //function buildQuery($aQstart, $aQry, $aQend)
-    //{
-    //    $result = $aQstart; // add the start of the query
-    //    array_pop($aQry); // remove the last element from the array, not used in the database
-    //    foreach ($aQry as $key => $value) // loop through the send data
-    //    {  
-    //        $result = $result . "'$value',"; // add posted values to the query
-    //    }
-        
-    //    $result = rtrim($result, ","); // trim the last comma of the query
-    //    return $result . $aQend; // add the end of the query
-    //}
-
     /** 
         function checkValue()
         $value = value to check
         if a value is null returns $val
-
-        Author K.Abraham
-        Date 24/04/2019
     **/
     function checkValue($aValue,$val)
     {
@@ -44,9 +18,6 @@
     /** 
         function prepState()
         prepares and returns a sql statement of execution
-       
-        Author K.Abraham
-        Date 24/04/2019
     **/
     function prepState($aStatement,$aString,$aParam)
     {
@@ -57,9 +28,6 @@
     /**
         function getDirectoryLIst()
         reads and returns the list of a directory
-        
-        Author K.Abraham
-        Date 24/04/2019
     **/
     function getDirectoryList ($directory) 
     {
@@ -88,11 +56,8 @@
     /** 
         function createTable()
         creates a table an populates its with values
-
-        Author K.Abraham
-        Date 24/04/2019
     **/
-    function createTable($tableInit, $images)
+    function createTable($tableInit, $location, $images)
     {
         echo $tableInit;
         $row = 0;

@@ -14,20 +14,21 @@ require_once 'classes/mysql.php';
            $this->fileName = $aFileName;
         }
 
-/*         function loadImage($location, $currentFile)
+function loadImage($location)
         {
             $location = $location . "/";
             $myImage = $this->LoadJpeg($location . $this->getFileName(), 'img/logo.png');
-           // printf($location);
-           // printf($this->getFileName());
-            
-           // read jpeg image into buffer for displaying, remember files being read from outside of root folder
-           //header('Content-Type: image/jpeg');
 
-           $name = "origin" . $currentFile . ".jpg";
-           imagejpeg($myImage, $name);
-           imagedestroy($myImage);
-        } */
+            printf($location);
+            printf($this->getFileName());
+            
+            // read jpeg image into buffer for displaying, remember files being read from outside of root folder
+            //header('Content-Type: image/jpeg');
+
+            imagejpeg($myImage, 'tempImage.jpg');            
+           
+            //imagedestroy($myImage);
+        }
 
         function LoadJpeg($imgname, $theStamp)
         {

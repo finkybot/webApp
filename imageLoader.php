@@ -22,7 +22,7 @@
         $myImage = $image->LoadJpeg($loc . $image->getFileName(), 'img/logo.png');
         
         // read jpeg image into buffer for displaying, remember files being read from outside of root folder
-        header('Content-Type: image/jpeg');
+        header('Content-Type: text/jpeg');
         imagejpeg($myImage);
         imagedestroy($myImage);
     }
