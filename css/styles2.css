@@ -2,13 +2,13 @@ body, html {height: 100%; margin: 0; font: 400 18px/1.8 "Lato", sans-serif; colo
 body {background-image: url("../img/img_flwr1.jpg"); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;}
 
 
-table {padding-left: 16px; padding-top: 16px} /* Format for table */
-table.resultTab { width: 100%; padding-left: 8px; text-align: center}
+ /* Format for table */
+table.resultTab { width: 100%; text-align: center}
 table.normal { width: 100%; padding-left: 8px; padding-right: 8px}
 
 .buttonMov {height: 8vh;width: 100%; background-repeat:no-repeat; border: none; background-color: transparent; outline: none;}
 
-#tData {font-family: Arial; margin-left: auto; margin-right: auto; color: lightseagreen; width: 50%; height: 100px; text-align: center; padding: 8px}
+#tData {font-family: Arial; margin-left: auto; margin-right: auto; color: lightseagreen; width: 50%; height: 100px; text-align: center;}
 
 .caption {position: absolute; left: 0; width: 100%; text-align: center; color: #fff}
 .caption span.border {background-color: #111; color: #fff; padding: 18px; font-size: 32px; letter-spacing: 8px}
@@ -34,7 +34,7 @@ table.normal { width: 100%; padding-left: 8px; padding-right: 8px}
 @media (max-width: 959px) 
 {
     .caption span.border{font-size: 2vw; letter-spacing: 4px}
-    .floating-menu {font-size: 32px; padding: 5px; width: 100%; height: auto}
+    .floating-menu {font-size: 0.3em; padding: 5px; width: 100%; height: auto}
     .topBar, .midBar, .btmBar {background-attachment: scroll}
     .buttonMov {height: 8vh;width: 100%;}
 }
@@ -42,7 +42,7 @@ table.normal { width: 100%; padding-left: 8px; padding-right: 8px}
 @media (max-width: 480px) 
 {
     .caption span.border{font-size: 2vw; letter-spacing: 2px} 
-    .floating-menu {font-size: 28px; padding: 5px; width: 100%; height: auto}
+    .floating-menu {font-size: 1em; padding: 5px; width: 100%; height: auto}
     .topBar, .midBar, .btmBar {background-attachment: scroll}
 }
 /* end of CSS */

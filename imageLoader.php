@@ -18,6 +18,7 @@
     $current = $_GET['val'];
     if(is_numeric($current))
     {
+
         $image = $account->getImage($current);
         $myImage = $image->LoadJpeg($loc . $image->getFileName(), 'img/logo.png');
         

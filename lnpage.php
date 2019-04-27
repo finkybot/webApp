@@ -25,6 +25,7 @@
 
 <link rel="stylesheet" href="css/styles2.css">
 
+
 </head>
 <?php
   $location = $account->getloc(); // retrieve the directory of the clients images
@@ -50,9 +51,9 @@
       <div class="caption" style="top: 20%">
           
         <table id="tData">
-        <form action="/imageSelect.php" method="post">
+        <form action="imageSelect.php" method="post">
           <tr><td><button class="button buttonMov" type="submit" name="up" value="UP">100%</button></td></tr>
-          <tr><td><img src="imageLoader.php?val=' . $_SESSION['imageNum'] . '" style="max-width: 80vw; max-height: 80vh; object-fit: contain"/></td></tr>
+          <tr><td><img src="imageLoader.php?val=' . $_SESSION['imageNum'] . '" style="max-width: 98vw; max-height: 98vh; object-fit: contain"/></td></tr>
           <tr><td><button class="button buttonMov" type="submit" name="down" value="DWN">100%</button></td></tr>
         </form>
         </table>
