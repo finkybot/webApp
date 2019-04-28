@@ -16,7 +16,7 @@
     $account = new Client(); // create a new client object
 
 
-    if(isset($_GET['status']) && $_GET['status'] == 'loggedout') // if the user is trying to log out
+    if(isset($_POST['loggedout'])) // if the user is trying to log out
     {
         $account->userLogOut();
         header("location: index.html");

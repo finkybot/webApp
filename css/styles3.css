@@ -1,0 +1,34 @@
+body, html {height: 100%; margin: 0; font: 400 18px/1.8 "Lato", sans-serif; color: #000;}
+body {background-image: url("../img/img_flwr1.jpg"); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;}
+
+div.block1 {width:100%; height:100%; position:relative; top: 0px; z-index:1;}
+
+div.block2 {opacity: 0.2; width:100%; height:30%; position:fixed; top:60px; z-index:2;}
+
+div.block3 {opacity: 0.2; width:100%; height:30%; position:fixed; bottom: 0px; z-index:3;}
+
+.img180 {-webkit-transform:rotate(180deg); -moz-transform: rotate(180deg); -ms-transform: rotate(180deg); -o-transform: rotate(180deg); transform: rotate(180deg);}
+
+#touchsurface {
+    width: 300px;
+    height: 300px;
+    padding: 10px;
+    font-size: 24px;
+    line-height: 1.1em;
+    background: lightyellow;
+    border: 1px solid orange;
+}
+
+
+@media  (min-width: 960px) 
+{
+}
+
+@media (max-width: 959px) 
+{
+}
+
+@media (max-width: 480px) 
+{
+}
+/* end of CSS */

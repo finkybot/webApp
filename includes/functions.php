@@ -54,7 +54,7 @@
     }
 
     // function fix image rotation by reading and fixing EXIF files
-    function correctImageOrientation($filename) {
+/*     function correctImageOrientation($filename) {
         if (function_exists('exif_read_data')) {
           $exif = exif_read_data($filename);
           if($exif && isset($exif['Orientation'])) {
@@ -81,4 +81,4 @@
             } // if there is some rotation necessary
           } // if have the exif orientation info
         } // if function exists      
-      }
+      } */

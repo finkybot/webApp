@@ -40,23 +40,22 @@
   echo'
   <body>
     <div class="floating-menu">
-      
-      <div class="menu"><a href="action.php?status=loggedout">Log out</a></div>
-      <div class="menu"><a href="dummy">Place holder 1</a></div>
-      <div class="menu"><a href="dummy">Place holder 2</a></div> 
+      <form action="imageSelect.php" method="post">
+      <div class="menu"><button  type="submit" name="down" value="DWN">Select previous Image</button></div>
+      <div class="menu"><button  type="submit" name="up" value="UP">Select Next Image</button></div>
+      </form>
     </div>
+
+    <div class="floatb-menu">
+    <form action="action.php" method="post">
+    <div class="menu"><button  type="submit" name="loggedout">Log out</a></div>
+    <div class="menu"> <span class="border">' . $images[$_SESSION['imageNum']]->getFileName() . '</span></div>
+    </form>
+  </div>
     
     <div>
-      <div class="caption" style="top: 10%"> <span class="border">' . $images[$_SESSION['imageNum']]->getFileName() . '</span></div>
-      <div class="caption" style="top: 20%">
-          
-        <table id="tData">
-        <form action="imageSelect.php" method="post">
-          <tr><td><button class="button buttonMov" type="submit" name="up" value="UP">100%</button></td></tr>
-          <tr><td><img src="imageLoader.php?val=' . $_SESSION['imageNum'] . '" style="max-width: 98vw; max-height: 98vh; object-fit: contain"/></td></tr>
-          <tr><td><button class="button buttonMov" type="submit" name="down" value="DWN">100%</button></td></tr>
-        </form>
-        </table>
+      <div class="caption" style="top: 10%">
+        <div><img src="imageLoader.php?val=' . $_SESSION['imageNum'] . '" style="max-width: 98vw; max-height: 98vh; object-fit: contain"/></div>
       </div>
     </div>
   </body>
