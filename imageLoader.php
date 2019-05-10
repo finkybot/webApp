@@ -19,11 +19,25 @@
     if(is_numeric($current))
     {
 
+      
+      if (!is_dir($loc .'temp')) 
+      {
+          mkdir($loc . 'temp', 0777, true);
+      }
+
+        $lDir = $loc . 'temp/';
+
         $image = $account->getImage($current);
         $myImage = $image->LoadJpeg($loc . $image->getFileName(), 'img/logo.png');
         
+        // $fname = ('PRE' . $image->getFileName()); // NOTE: --- code for changing the preview image name, FOR CREATING IMAGES ---
+
         // read jpeg image into buffer for displaying, remember files being read from outside of root folder
         header('Content-Type: text/jpeg');
+
+        //imagejpeg($myImage, ($lDir . $fname));  // NOTE: --- code combining and saving new image, FOR CREATING IMAGES ---
+        
         imagejpeg($myImage);
         imagedestroy($myImage);
+
     }
