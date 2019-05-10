@@ -27,7 +27,8 @@
         function verifyUnamePwd($usrId, $pwd)
         {
             $result = false; // set return var to false (default)
-            $query = "SELECT loc FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
+         // $query = "SELECT loc FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
+            $query = "SELECT Preview FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
             
             // attempt to prepare query 
             if($stmt = $this->conn->prepare($query)) // check the statement
@@ -60,7 +61,8 @@
         function getImageLists($usrId)
         {
             $results = []; // create an array for the results
-            $query = "SELECT iname FROM images WHERE uName = ?"; // SQL query
+           // $query = "SELECT iname FROM images WHERE uName = ?"; // SQL query TURNED OFF AS IT GETS THE MAIN NAME
+            $query = "SELECT pname FROM images WHERE uName = ?"; // SQL query GETS THE PREVIEW NAME
 
             // attempt to prepare query 
             if($stmt = $this->conn->prepare($query)) // check the statement
