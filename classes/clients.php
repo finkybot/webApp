@@ -19,7 +19,12 @@ require_once 'classes/mysql.php';
         function validateUser($usrId, $pwd)
         {
             $mysql = new Mysql();
-            $result = $mysql->verifyUnamePwd($usrId, md5($pwd));
+
+            
+            $temp = $pwd . $usrId;
+            $temp = md5($temp);
+            $pwd = $temp . $pwd;
+            $result = $mysql->verifyUnamePwd($usrId, sha1($pwd));
 
             if($result)
             {
@@ -28,7 +33,7 @@ require_once 'classes/mysql.php';
 
                 // set the class variables
                 $this->user = $usrId;
-                $this->password = $pwd;
+                //$this->password = $pwd;
                 $this->imageLocation = $result;
                 $this->status = true;
 

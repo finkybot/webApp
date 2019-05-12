@@ -26,7 +26,7 @@
     if(is_numeric($current))
     {
 
-     $mask = umask(0);
+     $mask = umask(0); // set the rights mask to 0 so I can create a folder with read, write and execute (777)
       if (!is_dir($loc .'pre')) 
       {
           mkdir($loc . 'pre', 0777, true);
