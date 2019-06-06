@@ -26,24 +26,23 @@
     if(is_numeric($current))
     {
 
-     $mask = umask(0); // set the rights mask to 0 so I can create a folder with read, write and execute (777)
-      if (!is_dir($loc .'pre')) 
-      {
+      $mask = umask(0); // set the rights mask to 0 so I can create a folder with read, write and execute (777)
+      //if (!is_dir($loc .'pre'))  // not needed on the virtual machine
+      //{
           mkdir($loc . 'pre', 0777, true);
-      }
-      umask($mask); 
+      //}
+      umask($mask); // put folder mask back on
 
+        $preLoc = $loc . "pre/PRE"; // locate the folder and addmendium for each image 'PRE'
         $image = $account->getImage($current);
         $myImage = $image->LoadJpeg($loc . $image->getFileName(), 'img/logo.png');
         
-        //$fname = ('PRE' . $image->getFileName()); // NOTE: --- code for changing the preview image name, FOR CREATING IMAGES ---
-
         // read jpeg image into buffer for displaying, remember files being read from outside of root folder
         header('Content-Type: text/jpeg');
 
-        imagejpeg($myImage, ($loc . $image->getFileName()));  // NOTE: --- code combining and saving new image, FOR CREATING IMAGES ---
+        imagejpeg($myImage, ($preLoc . $image->getFileName()));  // NOTE: --- code combining and saving new image, FOR CREATING IMAGES ---
         
-        readfile($loc . $image->getFileName());
-        imagedestroy($myImage); // as above
+        readfile($preLoc . $image->getFileName());
+        imagedestroy($myImage); // free the memory by destroying the image
 
     }

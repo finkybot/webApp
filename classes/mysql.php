@@ -22,12 +22,16 @@
             }
         }
 
-        // behavior: verify if the username and password is correct and authenticate
-        // or inform user username/password is wrong
+        /* verifyUnamePwd($userId, $pwd) verify if the username and password is correct and authenticate
+         * or inform user username/password is wrong
+         * $userId          username of the client
+         * $pwd             password of the client
+         */ 
         function verifyUnamePwd($usrId, $pwd)
         {
+            // note: remember I dont want to query image locations here so change this when I need to get both locations of the preview images and main images
             $result = false; // set return var to false (default)
-         // $query = "SELECT loc FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
+         // $query = "SELECT loc FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query: when creating the preview image builder I will need this
             $query = "SELECT Preview FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
             
             // attempt to prepare query 
@@ -58,12 +62,17 @@
 
         // behavior: get the file names for each image per
         // or inform user username/password is wrong
-        function getImageLists($usrId)
+        function getImageLists($usrId, $type)
         {
             $results = []; // create an array for the results
-           // $query = "SELECT iname FROM images WHERE uName = ?"; // SQL query TURNED OFF AS IT GETS THE MAIN NAME
-            $query = "SELECT pname FROM images WHERE uName = ?"; // SQL query GETS THE PREVIEW NAME
-
+            if($type == true)
+            {
+                $query = "SELECT iname FROM images WHERE uName = ?"; // SQL query selects the main images
+            }
+            else
+            {
+                $query = "SELECT pname FROM images WHERE uName = ?"; // SQL query to select the name of any preview image
+            }
             // attempt to prepare query 
             if($stmt = $this->conn->prepare($query)) // check the statement
             {
@@ -86,7 +95,6 @@
 
             $this->conn->close(); // close database connection
             return $results; // return $result;
-
         }
 
     }

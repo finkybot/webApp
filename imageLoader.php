@@ -20,8 +20,8 @@
     {
         
         // get current image and display it on the website
-        $image = $account->getImage($current);
-        
+        //$image = $account->getImage($current);
+        $image = $account->getPreview($current);
         header('Content-Type: text/jpeg');
         readfile($loc . $image->getFileName());
     }

@@ -12,6 +12,7 @@ require_once 'classes/mysql.php';
         private $status;
 
         // array for holding objects
+        private $previews;
         private $images;
 
         // validateUser()
@@ -37,7 +38,8 @@ require_once 'classes/mysql.php';
                 $this->imageLocation = $result;
                 $this->status = true;
 
-                $this->getImageList();
+                $this->previews     =       $this->setImageLists(false);
+                $this->images       =       $this->setImageLists(true);
                 // set data into an array
 
                 return true;
@@ -47,18 +49,23 @@ require_once 'classes/mysql.php';
 
         // getImageList()
         // get the images for the client
-        function getImageList()
+        function setImageLists($imageType)
         {
             $mysql = new Mysql();
-            $result = $mysql->getImageLists($this->user);
+            $result = $mysql->getImageLists($this->user, $imageType); 
+                
 
-            $this->images = array();
+            $files = array();
+            // $this->images = array();
 
             foreach ($result as $value)
             {
                 $tempImage = new Image($this->user, $value);
-                array_push($this->images, $tempImage);
+                array_push($files, $tempImage);
+                // array_push($this->images, $tempImage);
             }
+
+            return $files;
         }
 
 
@@ -114,10 +121,22 @@ require_once 'classes/mysql.php';
             return $this->images[$i];
         }
 
+        // get the image out of the array
+        function getPreview($i)
+        {
+            return $this->previews[$i];
+        }
+
         // get the image array
-        function getImageArray()
+/*         function getImageArray()
         {
             return $this->images;
+        } */
+
+        // get the image array
+        function getPreviewArray()
+        {
+            return $this->previews;
         }
 
         // return the size of the image array

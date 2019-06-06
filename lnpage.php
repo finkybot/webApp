@@ -30,7 +30,8 @@
 <?php
   $location = $account->getloc(); // retrieve the directory of the clients images
     
-  $images = $account->getImageArray();
+  //$images = $account->getImageArray();
+  $images = $account->getPreviewArray();
 
   //if($_SESSION['imageNum'] < 0){$_SESSION['imageNum'] = 0;}
   if($_SESSION['imageNum'] < 0){$_SESSION['imageNum'] = sizeof($images)-1;}
@@ -49,7 +50,7 @@
     <div class="floatb-menu">
     <form action="action.php" method="post">
     <div class="menu"><button  type="submit" name="loggedout">Log out</a></div>
-    <div class="menu"> <span class="border">' . $images[$_SESSION['imageNum']]->getFileName() . '</span></div>
+    <div class="menu"> <span class="border">' . str_replace("PRE","",$images[$_SESSION['imageNum']]->getFileName()) . '</span></div>
     </form>
   </div>
     
