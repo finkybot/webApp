@@ -1,9 +1,16 @@
 <?php
-    session_start();
     require_once 'classes/clients.php';
     require_once 'includes/functions.php';
+    session_start();
 
-    //$account = new Client();
+    // Make sure we have a canary set
+    if (!isset($_SESSION['canary'])) 
+    {
+      session_regenerate_id(true);
+      $_SESSION['canary'] = time();
+    }
+
+    // check a client account has be in
     $account = unserialize((base64_decode($_SESSION['clientSession'])));
     if(!$account)
     {

@@ -32,7 +32,7 @@
             // note: remember I dont want to query image locations here so change this when I need to get both locations of the preview images and main images
             $result = false; // set return var to false (default)
          // $query = "SELECT loc FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query: when creating the preview image builder I will need this
-            $query = "SELECT Preview FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
+            $query = "SELECT preview_location FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
             
             // attempt to prepare query 
             if($stmt = $this->conn->prepare($query)) // check the statement
@@ -67,11 +67,11 @@
             $results = []; // create an array for the results
             if($type == true)
             {
-                $query = "SELECT iname FROM images WHERE uName = ?"; // SQL query selects the main images
+                $query = "SELECT image_name FROM images WHERE username = ?"; // SQL query selects the main images
             }
             else
             {
-                $query = "SELECT pname FROM images WHERE uName = ?"; // SQL query to select the name of any preview image
+                $query = "SELECT preview_image_name FROM images WHERE username = ?"; // SQL query to select the name of any preview image
             }
             // attempt to prepare query 
             if($stmt = $this->conn->prepare($query)) // check the statement

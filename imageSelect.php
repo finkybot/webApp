@@ -2,8 +2,8 @@
     /*
 
     */
-    session_start();
     require_once 'classes/clients.php';
+    session_start();
   
     if(isset($_POST['up']))
     {

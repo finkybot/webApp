@@ -8,10 +8,11 @@
         however as sessions are more secure than cookies, they can still be hijacked, so I will encrypt them using base 64 encoding; they will need to be
         on encrypted on other pages during the session.
     */
-    session_start();
-    require_once 'classes/clients.php';
-    echo "<hr/> <h1>Connecting to server</h1> <hr/>";
 
+    require_once 'classes/clients.php';
+    session_start();
+
+    echo "<hr/> <h1>Connecting to server</h1> <hr/>";
 
     $account = new Client(); // create a new client object
 
