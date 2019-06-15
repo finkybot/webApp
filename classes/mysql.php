@@ -33,26 +33,41 @@
             $result = false; // set return var to false (default)
          // $query = "SELECT loc FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query: when creating the preview image builder I will need this
             $query = "SELECT preview_location FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
-            
-            // attempt to prepare query 
-            if($stmt = $this->conn->prepare($query)) // check the statement
+ 
+            if(strcmp($usrId, 'unknown') !==0)
             {
-                // add paremeters and execute query
-                $stmt->bind_param('ss',$usrId, $pwd);
-                $stmt->execute();
-
-                $stmt->bind_result($location);
-
-                if($stmt->fetch())
+                // attempt to prepare query 
+                if($stmt = $this->conn->prepare($query)) // check the statement
                 {
-                    $stmt->close();
-                    $result = $location; // (user found) set returning var to the location
-                    //printf("%s", $name);
+                    // add paremeters and execute query
+                    $stmt->bind_param('ss',$usrId, $pwd);
+                    $stmt->execute();
+
+                    $stmt->bind_result($location);
+
+                    if($stmt->fetch())
+                    {
+                        $stmt->close();
+                        $result = $location; // (user found) set returning var to the location
+                        $this->logAttempt($this->verifyUname($usrId),1); // log successful login attempt
+                    }
+                    else 
+                    {
+                        echo "<p>username or password not recognised </p>";
+                        $this->logAttempt($this->verifyUname($usrId),0); // log unsecessful attempt to login for the user
+                        return;
+                    }
+                }
+                else 
+                {
+                    echo "<p>Database query is not valid </p>";
+                    return;
                 }
             }
-            else 
+            else
             {
-                echo "<p>username or password not recognised </p>";
+                echo "<p>invalid username....</p>";
+                $this->logAttempt('unknown',0); // log unsucessful atempt for unknown username
                 return;
             }
 
@@ -97,6 +112,60 @@
             return $results; // return $result;
         }
 
+
+        /* private logAttempt($userId,) log users attempt to login on the database
+         * $userId          username of the client
+         * $state           sucess state of the login attempt
+         */ 
+        private function logAttempt($usrId, $state)
+        {
+
+            // note we are using the back quote `
+            $query = "INSERT INTO `logger` (`logID`, `username`, `dateTime`, `log_status`) VALUES (NULL, ?, CURRENT_TIMESTAMP,?)"; // SQL query
+
+            // attempt to prepare query 
+            if($stmt = $this->conn->prepare($query)) // check the statement
+            {
+                // add paremeters and execute query
+                $stmt->bind_param('ss',$usrId, $state);
+                $stmt->execute();
+                $stmt->close();
+            }
+            else 
+            {
+                echo "<script type='text/javascript'>alert('Log Failure');</script>";
+                return;
+            }
+
+            return TRUE; // return $result;
+        }
+
+
+        /* private verifyUname($userId) verify if the username exists
+         * or or set it to unknown (used for logging)
+         * $userId          username of the client
+         */ 
+        private function verifyUname($usrId)
+        {  
+            $query = "SELECT username FROM users WHERE username = ? LIMIT 1"; // SQL query
+
+            // attempt to prepare query 
+            if($stmt = $this->conn->prepare($query)) // check the statement
+            {
+                // add paremeters and execute query
+                $stmt->bind_param('s',$usrId);
+                $stmt->execute();
+
+                $stmt->bind_result($var);
+
+                if($stmt->fetch())
+                {
+                    $stmt->close();
+                    return $var; // return the found user
+                }
+            }
+            return 'unknown'; // defualt return unknown user
+        }
     }
 
 

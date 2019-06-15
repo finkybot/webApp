@@ -55,7 +55,7 @@
     </div>
 
     <div class="floatb-menu">
-    <form action="action.php" method="post">
+    <form action="userManager.php" method="post">
     <div class="menu"><button  type="submit" name="loggedout">Log out</a></div>
     <div class="menu"> <span class="border">' . str_replace("PRE","",$images[$_SESSION['imageNum']]->getFileName()) . '</span></div>
     </form>

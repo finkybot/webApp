@@ -10,7 +10,7 @@ table.normal { width: 100%; padding-left: 8px; padding-right: 8px}
 .caption {position: absolute; left: 0; width: 100%; text-align: center; color: #fff}
 .caption span.border {background-color: #111; color: #fff; padding: 18px; font-size: 32px; letter-spacing: 8px}
 
-.topPar, .midPar, .btmPar, .mainPar {position: relative; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
+.topPar, .midPar, .btmPar, .mainPar {position: relative; background-attachment: fixed; background-position: center center; background-repeat: no-repeat; background-size: cover;}
 .topPar {background-image: url("../img/img_issac.jpg"); min-height: 100%;}
 .midPar {background-image: url("../img/img_wedshoes.jpg"); opacity: 0.45; min-height: 50%}
 .btmPar {background-image: url("../img/img_crown.jpg"); opacity: 0.85; min-height: 100%}
@@ -59,4 +59,5 @@ img.avatar {width: 40%; border-radius: 50%}
 @media screen and (max-width: 480px) {.caption span.border{font-size: 2vw; letter-spacing: 2px} 
                     .floating-menu {font-size: 28px; padding: 5px; width: 100%; height: auto}
                     .topBar, .midBar, .btmBar {background-attachment: scroll}}
+
 /* end of CSS */
