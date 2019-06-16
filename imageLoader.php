@@ -1,7 +1,7 @@
 <?php
     // really wantted to place this code in a class but loading images into browsers appears to be problematic
     // so for the time being I am using a php page to carry out image loading
-    require_once 'classes/clients.php';
+    require_once 'classes/client.php';
     require_once 'includes/functions.php';
     session_start();
 

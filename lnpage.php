@@ -1,5 +1,5 @@
 <?php
-    require_once 'classes/clients.php';
+    require_once 'classes/client.php';
     require_once 'includes/functions.php';
     session_start();
 

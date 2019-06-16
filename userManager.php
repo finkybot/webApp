@@ -9,7 +9,7 @@
         on encrypted on other pages during the session.
     */
 
-    require_once 'classes/clients.php';
+    require_once 'classes/client.php';
     session_start();
 
     echo "<hr/> <h1>Connecting to server</h1> <hr/>";

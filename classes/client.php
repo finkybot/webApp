@@ -1,6 +1,6 @@
 <?php
 
-require_once 'classes/images.php';
+require_once 'classes/image.php';
 require_once 'classes/mysql.php';
 
     class Client
