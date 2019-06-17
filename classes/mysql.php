@@ -75,6 +75,7 @@
             return $result; // return $result;
         }
 
+
         // behavior: get the file names for each image per
         // or inform user username/password is wrong
         function getImageLists($usrId, $type)

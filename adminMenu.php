@@ -12,7 +12,7 @@
 
     // check a client object has been made
     $aClient = unserialize((base64_decode($_SESSION['clientSession'])));
-    if(!$aClient) // if now client object is found then the user isnt correctly logged in
+    if(!$aClient || ($aClient->getLoc() !== 'admin')) // if now client object is found then the user isnt correctly logged in
     {
       header('location: index.html');
       exit;
@@ -31,7 +31,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="css/styles2.css">
-<link rel="stylesheet" href="css/media2.css">
 
 
 </head>

@@ -14,12 +14,12 @@
 
     echo "<hr/> <h1>Connecting to server</h1> <hr/>";
 
-    $account = new Client(); // create a new client object
+    $aClient = new Client(); // create a new client object
 
 
     if(isset($_POST['loggedout'])) // if the user is trying to log out
     {
-        $account->userLogOut();
+        $aClient->userLogOut();
         header("location: index.html");
     }
 
@@ -34,12 +34,17 @@
     if($_POST && !empty($_POST['username']) && !empty($_POST['pwd']))
     {
 
-        $response = $account->validateUser($_POST['username'], $_POST['pwd']);
+        $response = $aClient->validateUser($_POST['username'], $_POST['pwd']);
         if($response)
         {
-            $srlClient = base64_encode(serialize($account));   //serilize the object to create a string representation
+            $srlClient = base64_encode(serialize($aClient));   //serilize the object to create a string representation
             $_SESSION['clientSession'] = $srlClient;    // pass the encrypted serialised client object into the session
             $_SESSION['imageNum'] = 0;
+            if(strcmp($aClient->getLoc(), 'admin') ===0)
+            {
+                header("location: adminMenu.php"); // move now to the logged in page (this is just for testing)    
+                return;    
+            }
             header("location: clientMenu.php"); // move now to the logged in page (this is just for testing)
         }
         else 

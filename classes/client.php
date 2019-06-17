@@ -21,7 +21,8 @@ require_once 'classes/mysql.php';
         {
             $mysql = new Mysql();
 
-            
+            $this->accountType = false;
+
             $temp = $pwd . $usrId;
             $temp = md5($temp);
             $pwd = $temp . $pwd;
