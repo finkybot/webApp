@@ -30,7 +30,7 @@
 <meta name="Keith Abraham" content="Photography">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="css/styles2.css">
+<link rel="stylesheet" href="css/styles3.css">
 
 
 </head>
@@ -49,17 +49,20 @@
   <body>
     <div class="floating-menu">
       <form action="imageSelect.php" method="post">
-      <div class="menu"><button  type="submit" name="down" value="DWN">Select previous Image</button></div>
-      <div class="menu"><button  type="submit" name="up" value="UP">Select Next Image</button></div>
+        <div class="menu"><button  type="submit" name="down" value="DWN">Select previous Image</button></div>
+        <div class="menu"><button  type="submit" name="up" value="UP">Select Next Image</button></div>
       </form>
     </div>
 
     <div class="floatb-menu">
-    <form action="userManager.php" method="post">
-    <div class="menu"><button  type="submit" name="loggedout">Log out</a></div>
-    <div class="menu"> <span class="border">' . str_replace("PRE","",$images[$_SESSION['imageNum']]->getFileName()) . '</span></div>
-    </form>
-  </div>
+      <form action="userManager.php" method="post">
+        <div class="menu"><button  type="submit" name="loggedout">Log out</a></div>
+      </form>
+      <form action="clientMenu.php" method="post">
+        <div class="menu"><button  type="submit" name="return">Return to menu</button></div>
+      </form>
+      <div class="menu"> <span class="border">' . str_replace("PRE","",$images[$_SESSION['imageNum']]->getFileName()) . '</span></div>
+    </div>
     
     <div>
       <div class="caption" style="top: 10%">

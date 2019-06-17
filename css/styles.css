@@ -5,10 +5,8 @@ table {padding-left: 16px; padding-top: 16px} /* Format for table */
 table.resultTab { width: 100%; padding-left: 8px; text-align: center}
 table.normal { width: 100%; padding-left: 8px; padding-right: 8px}
 
-#tData {font-family: Arial; margin-left: auto; margin-right: auto; color: lightseagreen; width: 50%; height: 100px; text-align: center; padding: 8px}
-
 .caption {position: absolute; left: 0; width: 100%; text-align: center; color: #fff}
-.caption span.border {background-color: #111; color: #fff; padding: 18px; font-size: 32px; letter-spacing: 8px}
+.caption span.border {background-color: #111; color: #fff; padding: 18px;}
 
 .topPar, .midPar, .btmPar, .mainPar {position: relative; background-attachment: fixed; background-position: center center; background-repeat: no-repeat; background-size: cover;}
 .topPar {background-image: url("../img/img_issac.jpg"); min-height: 100%;}
@@ -33,9 +31,6 @@ input[type=text], input[type=password] {width: 100%; padding: 12px 12px; margin:
 
 button {background-color: #444; color: white; padding: 6px 6px; border: none; cursor: pointer; width: 100%;} /*button style */
 button:hover {opacity: 0.8;}
-
-span.psw {float: right; padding-top: 16px}
-img.avatar {width: 40%; border-radius: 50%}
 
 .cancelbtn {width: auto; padding: 10px 18px; background-color: #f44336} /*cancel button style*/
 .imgcontainer {text-align: center; margin: 24px 0 12px 0; position: relative} /* Center the image and position the close button */

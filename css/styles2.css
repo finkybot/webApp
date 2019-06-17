@@ -1,50 +1,54 @@
-body, html {height: 105%; margin: 0; font: 400 18px/1.8 "Lato", sans-serif; color: #000;}
+body, html {height: 100%; margin: 0; font: 400 18px/1.8 "Lato", sans-serif; color: #000;}
 body {background-image: url("../img/img_flwr1.jpg"); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;}
 
+.caption {position: absolute; left: 0; width: 100%; text-align: center; color: #fff;}
+.caption span.border {background-color: #111; color: #fff; padding: 18px,;}
 
- /* Format for table */
-table.resultTab { width: 100%; text-align: center}
-table.normal { width: 100%; padding-left: 8px; padding-right: 8px}
-
-#tData {font-family: Arial; margin-left: auto; margin-right: auto; color: lightseagreen; width: 50%; height: 100px; text-align: center;}
-
-.caption {position: absolute; left: 0; width: 100%; text-align: center; color: #fff}
-.caption span.border {background-color: #111; color: #fff; padding: 18px; font-size: 32px; letter-spacing: 8px}
-
-
-.floating-menu {background: grey; padding: 5px; width: 100%; z-index: 100; position: fixed; opacity: 0.3}
+.floating-menu {background: grey; padding: 5px; width: 100%; z-index: 100; position: fixed; opacity: 0.6}
 .floating-menu a, .floating-menu h3 {font-size: 0.9em; display: block; margin: 0 0.5em; color: white}
 
-
-.floatb-menu {background: grey; padding: 5px; bottom: 0px; width: 100%; z-index: 100; position: fixed; opacity: 0.3}
+.floatb-menu {background: grey; padding: 5px; bottom: 0px; width: 100%; z-index: 100; position: fixed; opacity: 0.6}
 .floatb-menu a, .floating-menu h3 {font-size: 0.9em; display: block; margin: 0 0.5em; color: white}
 
 .menuButton {display: inline-block; height: 24px; width: 80px; text-align: center; margin: -0.2em 0.5em;} /* Formatting for the navigation hyperlinks */
-.menu {display: inline-block; text-align: center; font-size: 14px; font-weight: bold; margin: 0 0.5em;} /* Formatting for the navigation hyperlinks */
-.menu:hover {background: #aaa} 
+.menu {display: inline-block; font-size: 14px; font-weight: bold; margin: 0 0.5em;} /* Formatting for the navigation hyperlinks */
+.menu:hover {background: #aaa}
 
 button {background-color: #444; color: white; padding: 6px 6px; border: none; cursor: pointer; margin: auto;} /*button style */
 button:hover {opacity: 0.8;}
+.mainButton {width: 300px; height: 100%;}
 
 @media  (min-width: 960px) 
 {
-    .caption span.border{font-size: 3vw; letter-spacing: 6px} 
     .floating-menu {font-size: 32px; padding: 5px; width: 100%; height: auto}
-    .topBar, .midBar, .btmBar {background-attachment: scroll}
     .buttonMov {height: 12vh;width: 100%;}
+    .mainButton {font-size: 1.8vw; padding: 18px; width: 720px; height: 100%;}
 }
+
 
 @media (max-width: 959px) 
 {
-    .caption span.border{font-size: 2vw; letter-spacing: 4px}
     .floating-menu {font-size: 0.3em; padding: 5px; width: 100%; height: auto}
-    .topBar, .midBar, .btmBar {background-attachment: scroll}
+    .mainButton {font-size: 2.0vw; padding: 18px; width: 300px; height: 100%;}
 }
 
 @media (max-width: 480px) 
 {
-    .caption span.border{font-size: 2vw; letter-spacing: 2px} 
     .floating-menu {font-size: 1em; padding: 5px; width: 100%; height: auto}
-    .topBar, .midBar, .btmBar {background-attachment: scroll}
+    .mainButton {font-size: 2.2vw; padding: 18px; width: 100%; height: 100%;}
+}
+
+@media screen and (orientation: landscape)
+{
+    .top {top: 18%;}
+    .mid {top: 40%;}
+    .bot {top: 62%;}
+}
+
+@media screen and (orientation: portrait)
+{
+    .top {top: 30%;}
+    .mid {top: 52%;}
+    .bot {top: 74%;}
 }
 /* end of CSS */

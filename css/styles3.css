@@ -1,34 +1,42 @@
-body, html {height: 100%; margin: 0; font: 400 18px/1.8 "Lato", sans-serif; color: #000;}
+body, html {height: 105%; margin: 0; font: 400 18px/1.8 "Lato", sans-serif; color: #000;}
 body {background-image: url("../img/img_flwr1.jpg"); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;}
+form {display: inline-block}
 
-div.block1 {width:100%; height:100%; position:relative; top: 0px; z-index:1;}
+.caption {position: absolute; left: 0; width: 100%; text-align: center; color: #fff;}
+.caption span.border {background-color: #111; color: #fff; padding: 18px;}
 
-div.block2 {opacity: 0.2; width:100%; height:30%; position:fixed; top:60px; z-index:2;}
+.floating-menu {background: grey; padding: 5px; width: 100%; z-index: 100; position: fixed; opacity: 0.6; text-align: center;}
+.floating-menu a, .floating-menu h3 {font-size: 0.9em; display: block; margin: 0 0.5em; color: white;}
 
-div.block3 {opacity: 0.2; width:100%; height:30%; position:fixed; bottom: 0px; z-index:3;}
+.floatb-menu {background: grey; padding: 5px; bottom: 0px; width: 100%; z-index: 100; position: fixed; opacity: 0.6;}
+.floatb-menu a, .floating-menu h3 {font-size: 0.9em; display: block; margin: 0 0.5em; color: white}
 
-.img180 {-webkit-transform:rotate(180deg); -moz-transform: rotate(180deg); -ms-transform: rotate(180deg); -o-transform: rotate(180deg); transform: rotate(180deg);}
+.menuButton {display: inline-block; height: 24px; width: 80px; text-align: center; margin: -0.2em 0.5em;} /* Formatting for the navigation hyperlinks */
+.menu {display: inline-block; text-align: center; font-size: 14px; font-weight: bold; margin: 0 0.5em;} /* Formatting for the navigation hyperlinks */
+.menu:hover {background: #aaa} 
 
-#touchsurface {
-    width: 300px;
-    height: 300px;
-    padding: 10px;
-    font-size: 24px;
-    line-height: 1.1em;
-    background: lightyellow;
-    border: 1px solid orange;
-}
-
+button {background-color: #444; color: white; padding: 6px 6px; border: none; cursor: pointer; margin: auto;} /*button style */
+button:hover {opacity: 0.8;}
 
 @media  (min-width: 960px) 
 {
+    .caption span.border{font-size: 3vw; letter-spacing: 6px} 
+    .floating-menu {font-size: 32px; padding: 5px; width: 100%; height: auto;}
+    .topBar, .midBar, .btmBar {background-attachment: scroll}
+    .buttonMov {height: 12vh;width: 100%;}
 }
 
 @media (max-width: 959px) 
 {
+    .caption span.border{font-size: 2vw; letter-spacing: 4px}
+    .floating-menu {font-size: 0.3em; padding: 5px; width: 100%; height: auto}
+    .topBar, .midBar, .btmBar {background-attachment: scroll}
 }
 
 @media (max-width: 480px) 
 {
+    .caption span.border{font-size: 2vw; letter-spacing: 2px} 
+    .floating-menu {font-size: 1em; padding: 5px; width: 100%; height: auto}
+    .topBar, .midBar, .btmBar {background-attachment: scroll}
 }
 /* end of CSS */

@@ -40,7 +40,7 @@
             $srlClient = base64_encode(serialize($account));   //serilize the object to create a string representation
             $_SESSION['clientSession'] = $srlClient;    // pass the encrypted serialised client object into the session
             $_SESSION['imageNum'] = 0;
-            header("location: lnpage.php"); // move now to the logged in page (this is just for testing)
+            header("location: clientMenu.php"); // move now to the logged in page (this is just for testing)
         }
         else 
         {
