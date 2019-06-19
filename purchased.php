@@ -66,7 +66,10 @@
         <form action="menus/clientMenu.php" method="post">
           <div class="menu"><button  type="submit" name="return">Return to menu</button></div>
         </form>
-        <div class="menu"> <span class="border">' . $images[$_SESSION['imageNum']]->getFileName() . '</span></div>      
+        <div class="menu"> <span class="border">' . $images[$_SESSION['imageNum']]->getFileName() . '</span></div>
+        <form action="imageDownloader.php" method="post">
+        <div class="menu"><button  type="submit" name="downloader" value="test" >Download</a></div>
+      </form>      
       </div>
       
       <div>
