@@ -9,7 +9,8 @@
         on encrypted on other pages during the session.
     */
 
-    require_once 'classes/client.php';
+    require_once 'menus/classes/client.php';
+    require_once 'menus/includes/functions.php';
     session_start();
 
     echo "<hr/> <h1>Connecting to server</h1> <hr/>";
@@ -42,10 +43,10 @@
             $_SESSION['imageNum'] = 0;
             if(strcmp($aClient->getImageLoc(), 'admin') ===0)
             {
-                header("location: adminMenu.php"); // move now to the logged in page (this is just for testing)    
+                header("location: https://tm470gap/menus/adminMenu.php"); // move now to the logged in page (this is just for testing)    
                 return;    
             }
-            header("location: clientMenu.php"); // move now to the logged in page (this is just for testing)
+            header("location: https://tm470gap/menus/clientMenu.php"); // move now to the logged in page (this is just for testing)
         }
         else 
         {

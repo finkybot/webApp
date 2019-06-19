@@ -8,8 +8,8 @@
     // create the preview watermarked images into the preview 'pre' folder
     // add the details to the database image table, (main image name, preview image name, main location, preview loacation and client the belong to)
 
-    require_once 'classes/clients.php';
-    require_once 'includes/functions.php';
+    require_once 'menus/classes/clients.php';
+    require_once 'menus/includes/functions.php';
     session_start();
 
     // ensure user is logged in

@@ -1,6 +1,6 @@
 <?php
-    require_once 'classes/client.php';
-    require_once 'includes/functions.php';
+    require_once 'menu/classes/client.php';
+    require_once 'menu/includes/functions.php';
     session_start();
 
     // Make sure we have a canary set
@@ -40,22 +40,22 @@
   echo'
     <body>
       <div class="floating-menu">
-          <form action="preview.php" method="post"><div class="menu"><button  type="submit" name="Preview images" value="DWN">Select Image Previewer</button></div></form></div>
+          <form action="../preview.php" method="post"><div class="menu"><button  type="submit" name="Preview images" value="DWN">Select Image Previewer</button></div></form></div>
 
       <div class="floatb-menu">
-          <form action="userManager.php" method="post"><div class="menu"><button  type="submit" name="loggedout">Log out</a></div></form></div>
+          <form action="../userManager.php" method="post"><div class="menu"><button  type="submit" name="loggedout">Log out</a></div></form></div>
 
 
       <div class="caption top">
-          <form action="preview.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="setup account">SETUP CLIENT ACCOUNT</button></div></form>
+          <form action="../preview.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="setup account">SETUP CLIENT ACCOUNT</button></div></form>
       </div>
 
       <div class="caption mid">
-      <form action="preview.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="edit account">EDIT CLIENT ACCOUNT</button></div></form>
+      <form action="../preview.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="edit account">EDIT CLIENT ACCOUNT</button></div></form>
   </div>
 
       <div class="caption bot">
-        <form action="preview.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="manage images">MANAGE IMAGE UPLOADS</button></div></form>
+        <form action="../preview.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="manage images">MANAGE IMAGE UPLOADS</button></div></form>
       </div>
   </body>
   </html>';

@@ -1,7 +1,7 @@
 <?php
 
     // requirements
-    require_once 'helpers/includes/constants.php';
+    require_once 'menus/includes/constants.php';
 
     // Mysql object
     // handles connection the business client database

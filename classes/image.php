@@ -1,6 +1,6 @@
 <?php
 
-require_once 'helpers/classes/mysql.php';
+require_once 'menus/classes/mysql.php';
 
     class Image
     {
