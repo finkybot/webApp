@@ -37,8 +37,8 @@
 <?php
   $location = $aClient->getPrevLoc(); // retrieve the directory of the clients images
     
-  //$images = $aClient->getImageArray();
-  $images = $aClient->getPreviewArray();
+  $images = $aClient->getImageArray();
+  //$images = $aClient->getPreviewArray();
 
   //if($_SESSION['imageNum'] < 0){$_SESSION['imageNum'] = 0;}
   if($_SESSION['imageNum'] < 0){$_SESSION['imageNum'] = sizeof($images)-1;}
@@ -48,7 +48,7 @@
   echo'
   <body>
     <div class="floating-menu">
-      <form action="helpers/previewSelect.php" method="post">
+      <form action="helpers/imageSelect.php" method="post">
         <div class="menu"><button  type="submit" name="down" value="DWN">Select previous Image</button></div>
         <div class="menu"><button  type="submit" name="up" value="UP">Select Next Image</button></div>
       </form>
@@ -61,12 +61,14 @@
       <form action="clientMenu.php" method="post">
         <div class="menu"><button  type="submit" name="return">Return to menu</button></div>
       </form>
-      <div class="menu"> <span class="border">' . str_replace("PRE","",$images[$_SESSION['imageNum']]->getFileName()) . '</span></div>
+      <div class="menu"> <span class="border">' . $images[$_SESSION['imageNum']]->getFileName() . '</span></div>
+      <div class="menu"> <span class="border">' . $aClient->getImageLoc() . '</span></div>
+      
     </div>
     
     <div>
       <div class="caption" style="top: 10%">
-        <div><img src="previewLoader.php?val=' . $_SESSION['imageNum'] . '" style="max-width: 98vw; max-height: 98vh; object-fit: contain"/></div>
+        <div><img src="imageLoader.php?val=' . $_SESSION['imageNum'] . '" style="max-width: 98vw; max-height: 98vh; object-fit: contain"/></div>
       </div>
     </div>
   </body>

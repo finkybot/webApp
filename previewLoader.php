@@ -7,22 +7,22 @@
     session_start();
 
     // ensure user is logged in
-    $aClient = unserialize((base64_decode($_SESSION['clientSession'])));
-    if(!$aClient)
+    $account = unserialize((base64_decode($_SESSION['clientSession'])));
+    if(!$account)
     {
       header('location: https://tm470gap/index.html');
       exit;
     }
 
     // fetch a passed value to find current image 
-    $loc = $aClient->getImageLoc() . "/";
+    $loc = $account->getPrevLoc() . "/";
     $current = $_GET['val'];
     if(is_numeric($current))
     {
-
+        
         // get current image and display it on the website
-        $image = $aClient->getImage($current);
+        //$image = $account->getImage($current);
+        $image = $account->getPreview($current);
         header('Content-Type: text/jpeg');
         readfile($loc . $image->getFileName());
-
     }

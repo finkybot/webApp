@@ -51,7 +51,7 @@
       </div>
 
       <div class="caption bot">
-        <form action="adminMenu.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="Download images">VIEW AND DOWNLOAD PURCHASED PHOTOS</button></div></form>
+        <form action="purchased.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="Download images">VIEW AND DOWNLOAD PURCHASED PHOTOS</button></div></form>
       </div>
   </body>
   </html>';

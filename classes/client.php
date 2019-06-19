@@ -1,7 +1,7 @@
 <?php
 
-require_once 'classes/image.php';
-require_once 'classes/mysql.php';
+require_once 'helpers/classes/image.php';
+require_once 'helpers/classes/mysql.php';
 
     class Client
     {
@@ -9,6 +9,7 @@ require_once 'classes/mysql.php';
         private $user;
         private $password;
         private $imageLocation;
+        private $previewLocation;
         private $status;
 
         // array for holding objects
@@ -31,12 +32,12 @@ require_once 'classes/mysql.php';
             if($result)
             {
                 $_SESSION['status'] = 'authorized';
-                $_SESSION['location'] = $result;
 
                 // set the class variables
                 $this->user = $usrId;
                 //$this->password = $pwd;
-                $this->imageLocation = $result;
+                $this->imageLocation = $result[0];
+                $this->previewLocation = $result[1];
                 $this->status = true;
 
                 $this->previews     =       $this->setImageLists(false);
@@ -50,10 +51,10 @@ require_once 'classes/mysql.php';
 
         // getImageList()
         // get the images for the client
-        function setImageLists($imageType)
+        function setImageLists($type)
         {
             $mysql = new Mysql();
-            $result = $mysql->getImageLists($this->user, $imageType); 
+            $result = $mysql->getImageLists($this->user, $type); 
                 
 
             $files = array();
@@ -87,15 +88,6 @@ require_once 'classes/mysql.php';
             }
         }
 
-        // confirmClient()
-        // confirms a client is logged in
-        //function confirmClient()
-        //{
-        //    session_start();
-            //echo "<p>username or password not recognised </p>";
-            //if($_SESSION['status'] != 'authorized') 
-        //    return $this->status;
-        //}
 
         // getter helper functions
         // get user
@@ -110,10 +102,16 @@ require_once 'classes/mysql.php';
             return $this->password;
         }
 
-        // get the password
-        function getLoc()
+        // get the  preview images location
+        function getPrevLoc()
         {
             return $this->imageLocation;
+        }
+
+        // get the image location
+        function getImageLoc()
+        {
+            return $this->previewLocation;
         }
 
         // get the image out of the array
@@ -129,10 +127,10 @@ require_once 'classes/mysql.php';
         }
 
         // get the image array
-/*         function getImageArray()
+        function getImageArray()
         {
             return $this->images;
-        } */
+        }
 
         // get the image array
         function getPreviewArray()
