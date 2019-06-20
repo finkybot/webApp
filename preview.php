@@ -70,7 +70,9 @@
       <div>
         <div class="caption" style="top: 10%">
           <div><img src="previewLoader.php?val=' . $_SESSION['imageNum'] . '" style="max-width: 98vw; max-height: 98vh; object-fit: contain"/></div>
+          <button class="menu fsButton" id="btnFullscreen" type="button">Toggle Fullscreen</button>
         </div>
       </div>
+      <script src="scripts/fullscreen.js"></script>
     </body>
     </html>';

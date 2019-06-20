@@ -1,4 +1,4 @@
-body, html {height: 105%; margin: 0; font: 400 18px/1.8 "Lato", sans-serif; color: #000;}
+body, html {height: 100%; margin: 0; font: 400 18px/1.8 "Lato", sans-serif; color: #000;}
 body {background-image: url("../img/img_flwr1.jpg"); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;}
 form {display: inline-block}
 
@@ -18,25 +18,43 @@ form {display: inline-block}
 button {background-color: #444; color: white; padding: 6px 6px; border: none; cursor: pointer; margin: auto;} /*button style */
 button:hover {opacity: 0.8;}
 
+/* Style the button and place it in the middle of the container/image */
+.fsButton {position: absolute; bottom: 5%; transform: translate(-50%, -50%); 
+    -ms-transform: translate(-50%, -50%); background-color: #555; color: white;
+    font-size: 14px; padding: 12px; border: none; cursor: pointer; position: fixed; opacity: 0.3;}
+
 @media  (min-width: 960px) 
 {
-    .caption span.border{font-size: 3vw; letter-spacing: 6px} 
+    .caption span.border{font-size: 3vw;} 
     .floating-menu {font-size: 32px; padding: 5px; width: 100%; height: auto;}
     .topBar, .midBar, .btmBar {background-attachment: scroll}
-    .buttonMov {height: 12vh;width: 100%;}
+    .buttonMov {height: 12vh; width: 100%;}
 }
 
 @media (max-width: 959px) 
 {
-    .caption span.border{font-size: 2vw; letter-spacing: 4px}
+    .caption span.border{font-size: 2vw;}
     .floating-menu {font-size: 0.3em; padding: 5px; width: 100%; height: auto}
     .topBar, .midBar, .btmBar {background-attachment: scroll}
+    .fsButton{bottom: 12%;}
 }
 
 @media (max-width: 480px) 
 {
-    .caption span.border{font-size: 2vw; letter-spacing: 2px} 
+    .caption span.border{font-size: 2vw;} 
     .floating-menu {font-size: 1em; padding: 5px; width: 100%; height: auto}
     .topBar, .midBar, .btmBar {background-attachment: scroll}
+    .fsButton {bottom: 12%;}
+}
+
+@media screen and (orientation: landscape)
+{
+    .fsButton {left: 90%;}
+}
+
+@media screen and (orientation: portrait)
+{
+    .fsButton {left: 85%;}
+}
 }
 /* end of CSS */

@@ -66,16 +66,16 @@
         <form action="menus/clientMenu.php" method="post">
           <div class="menu"><button  type="submit" name="return">Return to menu</button></div>
         </form>
-        <div class="menu"> <span class="border">' . $images[$_SESSION['imageNum']]->getFileName() . '</span></div>
-        <form action="imageDownloader.php" method="post">
-        <div class="menu"><button  type="submit" name="downloader" value="test" >Download</a></div>
-      </form>      
+        <div class="menu"> <span class="border">' . $images[$_SESSION['imageNum']]->getFileName() . '</span></div>   
       </div>
-      
       <div>
+      <form action="imageDownloader.php" method="post">
         <div class="caption" style="top: 10%">
-          <div><img src="imageLoader.php?val=' . $_SESSION['imageNum'] . '" style="max-width: 98vw; max-height: 98vh; object-fit: contain"/></div>
+          <div><input type="image" type=submit" name="downloader" value="test" src="imageLoader.php?val=' . $_SESSION['imageNum'] . '" style="max-width: 98vw; max-height: 98vh; object-fit: contain"/></div>
+          <button class="menu fsButton" id="btnFullscreen" type="button">Toggle Fullscreen</button>
         </div>
+      </form>   
       </div>
+      <script src="scripts/fullscreen.js"></script>
     </body>
     </html>';

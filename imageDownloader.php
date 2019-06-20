@@ -16,17 +16,15 @@
 
     // fetch a passed value to find current image 
     $loc = $aClient->getImageLoc() . "/";
-    echo "we get here";
 
     // get current image and display it on the website
     $image = $aClient->getImage($_SESSION['imageNum']);
     $file = $loc . $image->getFileName();
-    echo " but not here";
     if (file_exists($file)) 
     {
         header('Content-Description: File Transfer');
         header('Content-Type: text/jpeg');
-        header('Content-Disposition: attachment; filename="'.basename($file).'"');
+        header('Content-Disposition: attachment; filename="'.basename($file).'"'); // save the file under its orginal name with the file location removed
         header('Expires: 0');
         header('Content-Transfer-Encoding: binary');
         header('Cache-Control: must-revalidate');
