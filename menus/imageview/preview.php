@@ -1,6 +1,6 @@
 <?php
-  require_once 'menus/classes/client.php';
-  require_once 'menus/includes/functions.php';
+  require_once '../../classes/client.php';
+  require_once '../../includes/functions.php';
   session_start();
 
   // Make sure we have a canary set
@@ -12,9 +12,14 @@
 
   // check a client aClient has be in
   $aClient = unserialize((base64_decode($_SESSION['clientSession'])));
-  if(!$aClient)
+  if(!$aClient|| ($aClient->getImageLoc() === 'admin'))
   {
-    header('location: index.html');
+    if($aClient)
+    {
+      $aClient->userLogOut();
+      unset($aClient);
+    }
+    header('location: https://tm470gap/index.html');
     exit;
   }
   echo'
@@ -28,12 +33,10 @@
     <meta name="Keith Abraham" content="Photography">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/styles3.css">
-
-
+    <link rel="stylesheet" href="../../css/styles3.css">
     </head>';
-   
-  $images = $aClient->getImageArray();
+
+  $images = $aClient->getPreviewArray();
 
   if(isset($_POST['up']))
   {
@@ -53,29 +56,28 @@
   echo'
     <body>
       <div class="floating-menu">
-        <form action="purchased.php" method="post">
+        <form action="preview.php" method="post">
           <div class="menu"><button  type="submit" name="down" value="DWN">Select previous Image</button></div>
           <div class="menu"><button  type="submit" name="up" value="UP">Select Next Image</button></div>
         </form>
       </div>
 
       <div class="floatb-menu">
-        <form action="userManager.php" method="post">
+        <form action="../../managers/userManager.php" method="post">
           <div class="menu"><button  type="submit" name="loggedout">Log out</a></div>
         </form>
-        <form action="menus/clientMenu.php" method="post">
+        <form action="../clientMenu.php" method="post">
           <div class="menu"><button  type="submit" name="return">Return to menu</button></div>
         </form>
-        <div class="menu"> <span class="border">' . $images[$_SESSION['imageNum']]->getFileName() . '</span></div>   
+        <div class="menu"> <span class="border">' . str_replace("PRE","",$images[$_SESSION['imageNum']]->getFileName()) . '</span></div>
       </div>
+      
       <div>
-      <form action="imageDownloader.php" method="post">
         <div class="caption" style="top: 10%">
-          <div><input type="image" type=submit" name="downloader" value="test" src="imageLoader.php?val=' . $_SESSION['imageNum'] . '" style="max-width: 98vw; max-height: 98vh; object-fit: contain"/></div>
+          <div><img src="../../managers/previewLoader.php?val=' . $_SESSION['imageNum'] . '" style="max-width: 98vw; max-height: 98vh; object-fit: contain"/></div>
           <button class="menu fsButton" id="btnFullscreen" type="button">Toggle Fullscreen</button>
         </div>
-      </form>   
       </div>
-      <script src="scripts/fullscreen.js"></script>
+      <script src="../../scripts/fullscreen.js"></script>
     </body>
     </html>';

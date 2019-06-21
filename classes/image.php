@@ -1,6 +1,6 @@
 <?php
-
-require_once 'menus/classes/mysql.php';
+$root = realpath($_SERVER["DOCUMENT_ROOT"]); 
+require_once  $root . '/classes/mysql.php';
 
     class Image
     {

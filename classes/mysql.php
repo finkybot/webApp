@@ -1,7 +1,7 @@
 <?php
-
     // requirements
-    require_once 'menus/includes/constants.php';
+    $root = realpath($_SERVER["DOCUMENT_ROOT"]); 
+    require_once $root. '/includes/constants.php';
 
     // Mysql object
     // handles connection the business client database

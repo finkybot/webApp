@@ -9,8 +9,8 @@
         on encrypted on other pages during the session.
     */
 
-    require_once 'menus/classes/client.php';
-    require_once 'menus/includes/functions.php';
+    require_once '../classes/client.php';
+    require_once '../includes/functions.php';
     session_start();
 
     echo "<hr/> <h1>Connecting to server</h1> <hr/>";
@@ -21,6 +21,7 @@
     if(isset($_POST['loggedout'])) // if the user is trying to log out
     {
         $aClient->userLogOut();
+        unset($aClient);
         header("location: https://tm470gap/index.html");
     }
 
@@ -51,6 +52,6 @@
         else 
         {
             echo "<p> User login Failed</p>";
-            header( "refresh:5;url=index.html" );
+            header( "refresh:5;url=https://tm470gap/index.html" );
         }
     }    

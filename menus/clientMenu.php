@@ -1,4 +1,6 @@
 <?php
+  require_once  '../classes/client.php';
+  require_once  '../includes/functions.php';
   session_start();
 
   // Make sure we have a canary set
@@ -10,9 +12,9 @@
 
   // check a client object has been made
   $aClient = unserialize((base64_decode($_SESSION['clientSession'])));
-  if(!$aClient) // if now client object is found then the user isnt correctly logged in
+  if(!$aClient || ($aClient->getImageLoc() === 'admin')) // if now client object is found then the user isnt correctly logged in
   {
-    header('location: index.html');
+    header('location: https://tm470gap/index.html');
     exit;
   }
   echo'
@@ -31,18 +33,18 @@
     </head>
     <body>
       <div class="floating-menu">
-          <form action="../preview.php" method="post"><div class="menu"><button  type="submit" name="Preview images" value="DWN">Select Image Previewer</button></div></form></div>
+          <form action="imageview/preview.php" method="post"><div class="menu"><button  type="submit" name="Preview images" value="DWN">Select Image Previewer</button></div></form></div>
 
       <div class="floatb-menu">
-          <form action="../userManager.php" method="post"><div class="menu"><button  type="submit" name="loggedout">Log out</a></div></form></div>
+          <form action="../managers/userManager.php" method="post"><div class="menu"><button  type="submit" name="loggedout">Log out</a></div></form></div>
 
 
       <div class="caption top">
-          <form action="../preview.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="Preview images">PREVIEW ALL IMAGES</button></div></form>
+          <form action="imageview/preview.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="Preview images">PREVIEW ALL IMAGES</button></div></form>
       </div>
 
       <div class="caption bot">
-        <form action="../purchased.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="Download images">VIEW AND DOWNLOAD PURCHASED PHOTOS</button></div></form>
+        <form action="imageview/purchased.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="Download images">VIEW AND DOWNLOAD PURCHASED PHOTOS</button></div></form>
       </div>
   </body>
   </html>';

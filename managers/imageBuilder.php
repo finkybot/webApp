@@ -8,15 +8,15 @@
     // create the preview watermarked images into the preview 'pre' folder
     // add the details to the database image table, (main image name, preview image name, main location, preview loacation and client the belong to)
 
-    require_once 'menus/classes/clients.php';
-    require_once 'menus/includes/functions.php';
+    require_once '../classes/client.php';
+    require_once '../includes/functions.php';
     session_start();
 
     // ensure user is logged in
     $account = unserialize((base64_decode($_SESSION['clientSession'])));
     if(!$account)
     {
-      header('location: index.html');
+      header('location: https://tm470gap/index.html');
       exit;
     }
 

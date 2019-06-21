@@ -1,7 +1,10 @@
 <?php
-
-require_once 'menus/classes/image.php';
-require_once 'menus/classes/mysql.php';
+// php calls files from the calling file location e.g. a root include ' classes/images.php' would work but the samce call below
+// would fail for deeper dirs as the address would be appended as such /dir/classes/images.php so i need to ensure these are 
+// absolute addresses for the classes and includes
+$root = realpath($_SERVER["DOCUMENT_ROOT"]);    
+require_once $root . '/classes/image.php';      
+require_once $root . '/classes/mysql.php';      
 
     class Client
     {
