@@ -15,13 +15,13 @@
     }
 
     // fetch a passed value to find current image 
-    $loc = $aClient->getImageLoc() . "/";
+    $loc = $aClient->getMainImageLocation() . "/";
     $current = $_GET['val'];
     if(is_numeric($current))
     {
 
         // get current image and display it on the website
-        $image = $aClient->getImage($current);
+        $image = $aClient->getImageNameFromArray($current);
         header('Content-Type: text/jpeg');
         readfile($loc . $image->getFileName());
 

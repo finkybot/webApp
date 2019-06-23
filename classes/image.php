@@ -14,30 +14,7 @@ require_once  $root . '/classes/mysql.php';
            $this->fileName = $aFileName;
         }
 
-function loadImage($location)
-        {
-            $myImage = $this->LoadJpeg($location . $this->getFileName(), 'img/logo.png');
-
-           // $mDir = getcwd(); // get the current main dir for safe keeping
-
-            printf($location);
-            printf($this->getFileName());
-
-            return $myImage;
-            
-            // read jpeg image into buffer for displaying, remember files being read from outside of root folder
-            //header('Content-Type: image/jpeg');
-            
-            //chdir($location); // set dir to client hidden dir
-
-            //imagejpeg($myImage, 'tempImage.jpg'); 
-            
-            //chdir($mDir); // reset dir
-           
-            //imagedestroy($myImage);
-        }
-
-        function LoadJpeg($imgname, $theStamp)
+        function createWatermarkedImage($imgname, $theStamp)
         {
             // Open both the jpg images
             $mainImage = imagecreatefromjpeg($imgname);
@@ -67,10 +44,10 @@ function loadImage($location)
             return $this->fileName;
         }
 
-        // helpers get the client name
-        function getClientName()
+        // helpers get the client
+        function getClient()
         {
-            return $this->fileName;
+            return $this->client;
         }
     }
 

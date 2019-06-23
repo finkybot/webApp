@@ -15,7 +15,7 @@
     }
 
     // fetch a passed value to find current image 
-    $loc = $aClient->getImageLoc() . "/";
+    $loc = $aClient->getMainImageLocation() . "/";
 
     // get current image and display it on the website
     $image = $aClient->getImage($_SESSION['imageNum']);

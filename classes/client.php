@@ -1,6 +1,6 @@
 <?php
-/* php calls files from the calling file location e.g. a root include ' classes/images.php' would work but the samce call below
-would fail for deeper dirs as the address would be appended as such /dir/classes/images.php so i need to ensure these are 
+/* php calls files from the calling file location e.g. a root include ' classes/images.php' would work but the same call below
+would fail for deeper dirs as the address would be appended as such /dir/classes/images.php so I need to ensure these are 
 absolute addresses for the classes and includes */
 $root = realpath($_SERVER["DOCUMENT_ROOT"]);    
 require_once $root . '/classes/image.php';      
@@ -10,11 +10,9 @@ require_once $root . '/classes/mysql.php';
     {
         // Class variables
         private $user;
-        private $password;
         private $imageLocation;
         private $previewLocation;
-        private $status;
-        private $accountType;
+        private $admin;
 
         // array for holding objects
         private $previews;
@@ -39,12 +37,10 @@ require_once $root . '/classes/mysql.php';
 
                 // set the class variables
                 $this->user = $usrId;
-                //$this->password = $pwd;
-                $this->imageLocation = $result[0];
-                $this->previewLocation = $result[1];
-                $this->accountType = $result[2];
-                $this->status = true;
-
+                $this->previewLocation = $result[0];
+                $this->imageLocation = $result[1];
+                $this->admin = $result[2];
+     
                 $this->previews     =       $this->setImageLists(false);
                 $this->images       =       $this->setImageLists(true);
                 // set data into an array
@@ -55,7 +51,7 @@ require_once $root . '/classes/mysql.php';
         }
 
         // getImageList()
-        // get the images for the client
+        // fetch the images for the client
         function setImageLists($type)
         {
             $mysql = new Mysql();
@@ -101,32 +97,26 @@ require_once $root . '/classes/mysql.php';
             return $this->user;
         }
 
-        // get the password
-        function getPwd()
-        {
-            return $this->password;
-        }
-
-        // get the  preview images location
-        function getPrevLoc()
+        // get the  main images location
+        function getMainImageLocation()
         {
             return $this->imageLocation;
         }
 
-        // get the image location
-        function getImageLoc()
+        // get the preview image location
+        function getPreviewImageLocation()
         {
             return $this->previewLocation;
         }
 
         // get the image out of the array
-        function getImage($i)
+        function getImageNameFromArray($i)
         {
             return $this->images[$i];
         }
 
         // get the image out of the array
-        function getPreview($i)
+        function getPreviewNameFromArray($i)
         {
             return $this->previews[$i];
         }
@@ -137,7 +127,7 @@ require_once $root . '/classes/mysql.php';
             return $this->images;
         }
 
-        // get the image array
+        // get the preview image array
         function getPreviewArray()
         {
             return $this->previews;
@@ -152,7 +142,7 @@ require_once $root . '/classes/mysql.php';
         // get account type is this an admin or normal client
         function getAccountType()
         {
-            return $this->accountType;
+            return $this->admin;
         }
 
     }

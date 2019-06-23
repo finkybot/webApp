@@ -21,7 +21,7 @@
     }
 
     // fetch a passed value to find current image 
-    $loc = $account->getLoc() . "/";
+    $loc = $account->getMainImageLocation() . "/";
     $current = $_GET['val'];
     if(is_numeric($current))
     {
@@ -35,7 +35,7 @@
 
         $preLoc = $loc . "pre/PRE"; // locate the folder and addmendium for each image 'PRE'
         $image = $account->getImage($current);
-        $myImage = $image->LoadJpeg($loc . $image->getFileName(), 'img/logo.png');
+        $myImage = $image->createWatermarkedImage($loc . $image->getFileName(), 'img/logo.png');
         
         // read jpeg image into buffer for displaying, remember files being read from outside of root folder
         header('Content-Type: text/jpeg');
