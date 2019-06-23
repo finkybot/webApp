@@ -1,7 +1,7 @@
 <?php
-// php calls files from the calling file location e.g. a root include ' classes/images.php' would work but the samce call below
-// would fail for deeper dirs as the address would be appended as such /dir/classes/images.php so i need to ensure these are 
-// absolute addresses for the classes and includes
+/* php calls files from the calling file location e.g. a root include ' classes/images.php' would work but the samce call below
+would fail for deeper dirs as the address would be appended as such /dir/classes/images.php so i need to ensure these are 
+absolute addresses for the classes and includes */
 $root = realpath($_SERVER["DOCUMENT_ROOT"]);    
 require_once $root . '/classes/image.php';      
 require_once $root . '/classes/mysql.php';      
@@ -14,6 +14,7 @@ require_once $root . '/classes/mysql.php';
         private $imageLocation;
         private $previewLocation;
         private $status;
+        private $accountType;
 
         // array for holding objects
         private $previews;
@@ -41,6 +42,7 @@ require_once $root . '/classes/mysql.php';
                 //$this->password = $pwd;
                 $this->imageLocation = $result[0];
                 $this->previewLocation = $result[1];
+                $this->accountType = $result[2];
                 $this->status = true;
 
                 $this->previews     =       $this->setImageLists(false);
@@ -145,6 +147,12 @@ require_once $root . '/classes/mysql.php';
         function getSizeOfImageArray()
         {
             return sizeof($this->images);
+        }
+
+        // get account type is this an admin or normal client
+        function getAccountType()
+        {
+            return $this->accountType;
         }
 
     }

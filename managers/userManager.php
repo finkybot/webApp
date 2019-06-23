@@ -42,7 +42,7 @@
             $srlClient = base64_encode(serialize($aClient));   //serilize the object to create a string representation
             $_SESSION['clientSession'] = $srlClient;    // pass the encrypted serialised client object into the session
             $_SESSION['imageNum'] = 0;
-            if(strcmp($aClient->getImageLoc(), 'admin') ===0)
+            if($aClient->getAccountType() == 1)
             {
                 header("location: https://tm470gap/menus/adminMenu.php"); // move now to the logged in page (this is just for testing)    
                 return;    

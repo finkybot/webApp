@@ -12,8 +12,13 @@
 
   // check a client object has been made
   $aClient = unserialize((base64_decode($_SESSION['clientSession'])));
-  if(!$aClient || ($aClient->getImageLoc() === 'admin')) // if now client object is found then the user isnt correctly logged in
+  if(!$aClient || $aClient->getAccountType() != 0) // check if a client is logged in
   {
+    if($aClient)
+    {
+      $aClient->userLogOut();
+      unset($aClient);
+    }
     header('location: https://tm470gap/index.html');
     exit;
   }
@@ -32,9 +37,6 @@
 
     </head>
     <body>
-      <div class="floating-menu">
-          <form action="imageview/preview.php" method="post"><div class="menu"><button  type="submit" name="Preview images" value="DWN">Select Image Previewer</button></div></form></div>
-
       <div class="floatb-menu">
           <form action="../managers/userManager.php" method="post"><div class="menu"><button  type="submit" name="loggedout">Log out</a></div></form></div>
 

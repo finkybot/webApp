@@ -57,7 +57,6 @@ function loadImage($location)
             $imageX = imagesx($stamp);
             $imageY = imagesy($stamp);
 
-            // 
             imagecopy($mainImage, $stamp, imagesx($mainImage) - $imageX + $marginX, imagesy($mainImage) - $imageY + $marginY, 0, 0, imagesx($stamp), imagesy($stamp));
             return $mainImage;
         }

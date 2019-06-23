@@ -34,7 +34,7 @@
             $result[0] = false; // set return var to false (default)
             $result[1] = false;
          // $query = "SELECT loc FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query: when creating the preview image builder I will need this
-            $query = "SELECT preview_location, image_location FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
+            $query = "SELECT preview_location, image_location, client_type FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
  
             if(strcmp($usrId, 'unknown') !==0)
             {
@@ -45,19 +45,20 @@
                     $stmt->bind_param('ss',$usrId, $pwd);
                     $stmt->execute();
 
-                    $stmt->bind_result($pLocation, $iLocation);
+                    $stmt->bind_result($pLocation, $iLocation, $aType);
 
                     if($stmt->fetch())
                     {
                         $stmt->close();
                         $result[0] = $pLocation; // (user found) set returning var to the location
                         $result[1] = $iLocation;
+                        $result[2] = $aType;
                         $this->logAttempt($this->verifyUname($usrId),1); // log successful login attempt
                     }
                     else 
                     {
                         echo "<p>username or password not recognised </p>";
-                        $this->logAttempt($this->verifyUname($usrId),0); // log unsecessful attempt to login for the user
+                        $this->logAttempt($this->verifyUname($usrId),0); // log unsuccessful  attempt to login for the user
                         return;
                     }
                 }
@@ -70,7 +71,7 @@
             else
             {
                 echo "<p>invalid username....</p>";
-                $this->logAttempt('unknown',0); // log unsucessful atempt for unknown username
+                $this->logAttempt('unknown',0); // log unsuccessful attempt for unknown username
                 return;
             }
 
@@ -78,8 +79,7 @@
             return $result; // return $result;
         }
 
-
-        // behavior: get the file names for each image per
+        // behaviour: get the file names for each image per
         // or inform user username/password is wrong
         function getImageLists($usrId, $type)
         {
@@ -119,7 +119,7 @@
 
         /* private logAttempt($userId,) log users attempt to login on the database
          * $userId          username of the client
-         * $state           sucess state of the login attempt
+         * $state           success state of the login attempt
          */ 
         private function logAttempt($usrId, $state)
         {
@@ -146,8 +146,8 @@
 
 
         /* private verifyUname($userId) verify if the username exists
-         * or or set it to unknown (used for logging)
-         * $userId          username of the client
+         * or set it to unknown (used for logging)
+         * $userId username of the client
          */ 
         private function verifyUname($usrId)
         {  
@@ -168,7 +168,7 @@
                     return $var; // return the found user
                 }
             }
-            return 'unknown'; // defualt return unknown user
+            return 'unknown'; // default return unknown user
         }
     }
 

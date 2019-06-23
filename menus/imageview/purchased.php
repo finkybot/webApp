@@ -12,7 +12,7 @@
 
   // check a client aClient has be in
   $aClient = unserialize((base64_decode($_SESSION['clientSession'])));
-  if(!$aClient|| ($aClient->getImageLoc() === 'admin'))
+  if(!$aClient || $aClient->getAccountType() == 1)
   {
     if($aClient)
     {
