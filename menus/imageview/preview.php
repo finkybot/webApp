@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="../../css/styles3.css">
     </head>';
 
-  $images = $aClient->getPreviewArray();
+  $images = $aClient->getImageArray();
 
   if(isset($_POST['up']))
   {
@@ -69,7 +69,7 @@
         <form action="../clientMenu.php" method="post">
           <div class="menu"><button  type="submit" name="return">Return to menu</button></div>
         </form>
-        <div class="menu"> <span class="border">' . str_replace("PRE","",$images[$_SESSION['imageNum']]->getFileName()) . '</span></div>
+        <div class="menu"> <span class="border">' . $images[$_SESSION['imageNum']]->getFileName() . '</span></div>
       </div>
       
       <div>

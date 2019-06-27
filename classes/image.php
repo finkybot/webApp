@@ -7,11 +7,13 @@ require_once  $root . '/classes/mysql.php';
         // Class variables
         private $client;
         private $fileName;
+        private $status;
 
-        function __construct($aClient, $aFileName)
+        function __construct($aClient, $aFileName, $stat)
         {
            $this->client = $aClient;
            $this->fileName = $aFileName;
+           $this->status = $stat;
         }
 
         function createWatermarkedImage($imgname, $theStamp)
@@ -48,6 +50,12 @@ require_once  $root . '/classes/mysql.php';
         function getClient()
         {
             return $this->client;
+        }
+
+        // helpers get the status
+        function getStatus()
+        {
+            return $this->status;
         }
     }
 

@@ -34,7 +34,7 @@
             $result[0] = false; // set return var to false (default)
             $result[1] = false;
          // $query = "SELECT loc FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query: when creating the preview image builder I will need this
-            $query = "SELECT preview_location, image_location, client_type FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
+            $query = "SELECT image_location, client_type FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
  
             if(strcmp($usrId, 'unknown') !==0)
             {
@@ -45,14 +45,13 @@
                     $stmt->bind_param('ss',$usrId, $pwd);
                     $stmt->execute();
 
-                    $stmt->bind_result($pLocation, $iLocation, $aType);
+                    $stmt->bind_result($iLocation, $aType);
 
                     if($stmt->fetch())
                     {
                         $stmt->close();
-                        $result[0] = $pLocation; // (user found) set returning var to the location
-                        $result[1] = $iLocation;
-                        $result[2] = $aType;
+                        $result[0] = $iLocation; 
+                        $result[1] = $aType;
                         $this->logAttempt($this->verifyUname($usrId),1); // log successful login attempt
                     }
                     else 
@@ -81,17 +80,9 @@
 
         // behaviour: get the file names for each image per
         // or inform user username/password is wrong
-        function getImageLists($usrId, $type)
+        function getImageList($usrId)
         {
-            $results = []; // create an array for the results
-            if($type == true)
-            {
-                $query = "SELECT image_name FROM images WHERE username = ? AND purchased = 1"; // SQL query selects the main images
-            }
-            else
-            {
-                $query = "SELECT preview_image_name FROM images WHERE username = ?"; // SQL query to select the name of any preview image
-            }
+            $query = "SELECT image_name, purchased FROM images WHERE username = ?"; // SQL query selects the main images
             // attempt to prepare query 
             if($stmt = $this->conn->prepare($query)) // check the statement
             {
@@ -99,21 +90,25 @@
                 $stmt->bind_param('s',$usrId);
                 $stmt->execute();
 
-                $stmt->bind_result($userImages);
+                $stmt->bind_result($userImage, $status);
 
+				$keys = array();
+				$vals = array();
                 $i = 0;
-
+                
                 while($stmt->fetch())
                 {
-                    $i++;
-                    $results[$i] = $userImages;
+					$keys[$i] = $userImage;
+					$vals[$i] = $status;
+		            $i++;                
                 }
 
                 $stmt->close();
             }
 
+			$result = array_combine($keys, $vals);
             $this->conn->close(); // close database connection
-            return $results; // return $result;
+            return $result; // return $result;
         }
 
 

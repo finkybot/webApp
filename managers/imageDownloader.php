@@ -15,12 +15,12 @@
     }
 
     // fetch a passed value to find current image 
-    $loc = $aClient->getMainImageLocation() . "/";
+    $loc = $aClient->getImageLocation() . "/";
 
     // get current image and display it on the website
-    $image = $aClient->getImage($_SESSION['imageNum']);
+    $image = $aClient->getImageNameFromArray($_SESSION['imageNum']);
     $file = $loc . $image->getFileName();
-    if (file_exists($file)) 
+    if (file_exists($file) && $image->getStatus() == 1) 
     {
         header('Content-Description: File Transfer');
         header('Content-Type: text/jpeg');

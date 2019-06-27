@@ -12,7 +12,8 @@
     require_once '../classes/client.php';
     require_once '../includes/functions.php';
     session_start();
-
+    echo '<body style="background-color:SlateGrey">'; 
+    echo '<div style ="font: 400 18px/1.8 Lato, sans-serif; color:AntiqueWhite">';
     echo "<hr/> <h1>Connecting to server</h1> <hr/>";
     $aClient = unserialize((base64_decode($_SESSION['clientSession'])));
     if(isset($_POST['loggedout'])) // if the user is trying to log out
@@ -48,8 +49,9 @@
             }
             else 
             {
+                unset($aClient);
                 echo "<p> User login Failed</p>";
-                header( "refresh:5;url=https://tm470gap/index.html" );
+                header( "refresh:1;url=https://tm470gap/index.html" );
             }
         }    
     }

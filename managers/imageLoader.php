@@ -15,14 +15,23 @@
     }
 
     // fetch a passed value to find current image 
-    $loc = $aClient->getMainImageLocation() . "/";
+    $loc = $aClient->getImageLocation() . "/";
     $current = $_GET['val'];
     if(is_numeric($current))
     {
-
         // get current image and display it on the website
         $image = $aClient->getImageNameFromArray($current);
-        header('Content-Type: text/jpeg');
-        readfile($loc . $image->getFileName());
-
+        if($image->getStatus() == 1)
+        {
+          header('Content-Type: text/jpeg');
+          readfile($loc . $image->getFileName());
+        }
+        else
+        {
+          $myImage = $image->createWatermarkedImage($loc . $image->getFileName(), '../img/logo.png');
+          header('Content-Type: text/jpeg');
+          imagejpeg($myImage); 
+          imagedestroy($im);
+        }
+        //readfile($loc . $image->getFileName());
     }

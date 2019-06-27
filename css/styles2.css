@@ -2,7 +2,7 @@ body, html {height: 100%; margin: 0; font: 400 18px/1.8 "Lato", sans-serif; colo
 body {background-image: url("../img/img_flwr1.jpg"); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;}
 
 .caption {position: absolute; left: 0; width: 100%; text-align: center; color: #fff;}
-.caption span.border {background-color: #111; color: #fff; padding: 18px,;}
+.caption span.border {background-color: #111; color: #fff; padding: 32px,;}
 
 .floating-menu {background: grey; padding: 5px; width: 100%; z-index: 100; position: fixed; opacity: 0.6}
 .floating-menu a, .floating-menu h3 {font-size: 0.9em; display: block; margin: 0 0.5em; color: white}
@@ -17,6 +17,7 @@ body {background-image: url("../img/img_flwr1.jpg"); background-attachment: fixe
 button {background-color: #444; color: white; padding: 6px 6px; border: none; cursor: pointer; margin: auto;} /*button style */
 button:hover {opacity: 0.8;}
 .mainButton {width: 300px; height: 100%;}
+.own {top: 40%;}
 
 @media  (min-width: 960px) 
 {

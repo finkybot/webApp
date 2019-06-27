@@ -41,12 +41,10 @@
           <form action="../managers/userManager.php" method="post"><div class="menu"><button  type="submit" name="loggedout">Log out</a></div></form></div>
 
 
-      <div class="caption top">
-          <form action="imageview/preview.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="Preview images">PREVIEW ALL IMAGES</button></div></form>
-      </div>
-
-      <div class="caption bot">
-        <form action="imageview/purchased.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="Download images">VIEW AND DOWNLOAD PURCHASED PHOTOS</button></div></form>
+      <div class="caption own">
+        <form action="imageview/viewer.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="Download images">PRESS HERE TO VIEW YOUR PHOTOS</br>DOWNLOAD YOUR PURCHASED PHOTOS</button></div></form>
+        <p><h2 style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black">
+        Purchased images will not be watermarked<br>and can be downloaded by clicking<br>or pressing the image<h2></p>
       </div>
   </body>
   </html>';

@@ -11,11 +11,9 @@ require_once $root . '/classes/mysql.php';
         // Class variables
         private $user;
         private $imageLocation;
-        private $previewLocation;
         private $admin;
 
         // array for holding objects
-        private $previews;
         private $images;
 
         // validateUser()
@@ -37,12 +35,10 @@ require_once $root . '/classes/mysql.php';
 
                 // set the class variables
                 $this->user = $usrId;
-                $this->previewLocation = $result[0];
-                $this->imageLocation = $result[1];
-                $this->admin = $result[2];
+                $this->imageLocation = $result[0];
+                $this->admin = $result[1];
      
-                $this->previews     =       $this->setImageLists(false);
-                $this->images       =       $this->setImageLists(true);
+                $this->images       =       $this->setupImageList();
                 // set data into an array
 
                 return true;
@@ -50,24 +46,23 @@ require_once $root . '/classes/mysql.php';
             else return false;
         }
 
-        // getImageList()
+
+
+        // setupImageList()
         // fetch the images for the client
-        function setImageLists($type)
+        function setupImageList()
         {
             $mysql = new Mysql();
-            $result = $mysql->getImageLists($this->user, $type); 
-                
-
+            $result = $mysql->getImageList($this->user);  
             $files = array();
             // $this->images = array();
 
-            foreach ($result as $value)
+            foreach ($result as $key => $value)
             {
-                $tempImage = new Image($this->user, $value);
+                $tempImage = new Image($this->user, $key, $value);
                 array_push($files, $tempImage);
                 // array_push($this->images, $tempImage);
             }
-
             return $files;
         }
 
@@ -98,16 +93,11 @@ require_once $root . '/classes/mysql.php';
         }
 
         // get the  main images location
-        function getMainImageLocation()
+        function getImageLocation()
         {
             return $this->imageLocation;
         }
 
-        // get the preview image location
-        function getPreviewImageLocation()
-        {
-            return $this->previewLocation;
-        }
 
         // get the image out of the array
         function getImageNameFromArray($i)
@@ -115,11 +105,6 @@ require_once $root . '/classes/mysql.php';
             return $this->images[$i];
         }
 
-        // get the image out of the array
-        function getPreviewNameFromArray($i)
-        {
-            return $this->previews[$i];
-        }
 
         // get the image array
         function getImageArray()
@@ -127,11 +112,6 @@ require_once $root . '/classes/mysql.php';
             return $this->images;
         }
 
-        // get the preview image array
-        function getPreviewArray()
-        {
-            return $this->previews;
-        }
 
         // return the size of the image array
         function getSizeOfImageArray()
@@ -144,7 +124,6 @@ require_once $root . '/classes/mysql.php';
         {
             return $this->admin;
         }
-
     }
 
 
