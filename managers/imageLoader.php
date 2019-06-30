@@ -33,5 +33,4 @@
           imagejpeg($myImage); 
           imagedestroy($im);
         }
-        //readfile($loc . $image->getFileName());
     }

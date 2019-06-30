@@ -3,13 +3,6 @@
   require_once '../../includes/functions.php';
   session_start();
 
-  // Make sure we have a canary set
-  if (!isset($_SESSION['canary'])) 
-  {
-    session_regenerate_id(true);
-    $_SESSION['canary'] = time();
-  }
-
   // check a client aClient has be in
   $aClient = unserialize((base64_decode($_SESSION['clientSession'])));
   if(!$aClient || $aClient->getAccountType() == 1)
@@ -67,9 +60,6 @@
       <div class="floatb-menu">
         <form action="../../managers/userManager.php" method="post">
           <div class="menu"><button  type="submit" name="loggedout">Log out</a></div>
-        </form>
-        <form action="../clientMenu.php" method="post">
-          <div class="menu"><button  type="submit" name="return">Return to menu</button></div>
         </form>
         <div class="menu"> <span class="border">' . $images[$_SESSION['imageNum']]->getFileName() . '</span></div>   
       </div>

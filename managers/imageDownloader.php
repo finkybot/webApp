@@ -30,8 +30,7 @@
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
         header('Content-Length: ' . filesize($file));
-        ob_clean(); // it appears I need to clear out the output buffer
-        flush();
+        ob_clean(); // clean the output buffer before reading file
         readfile($file);
         exit;
     }

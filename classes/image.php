@@ -28,15 +28,14 @@ require_once  $root . '/classes/mysql.php';
                 return null;
             }
     
-            // Set the margins for the stamp
-            $marginX = 110;
-            $marginY = 120;
-
             // get the image size of the stamp
             $imageX = imagesx($stamp);
             $imageY = imagesy($stamp);
+            // Set the margins for the stamp
+            $marginX = (imagesx($mainImage)/2)-($imageX/2);
+            $marginY = (imagesy($mainImage)/2)-($imageY/2);
 
-            imagecopy($mainImage, $stamp, imagesx($mainImage) - $imageX + $marginX, imagesy($mainImage) - $imageY + $marginY, 0, 0, imagesx($stamp), imagesy($stamp));
+            imagecopy($mainImage, $stamp, imagesx($mainImage) - $imageX - $marginX, imagesy($mainImage) - $imageY - $marginY, 0, 0, imagesx($stamp), imagesy($stamp));
             return $mainImage;
         }
 

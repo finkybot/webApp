@@ -3,13 +3,6 @@
   require_once '../includes/functions.php';
   session_start();
 
-  // Make sure we have a canary set
-  if (!isset($_SESSION['canary'])) 
-  {
-    session_regenerate_id(true);
-    $_SESSION['canary'] = time();
-  }
-
   // check a client object has been made
   $aClient = unserialize((base64_decode($_SESSION['clientSession'])));
   if(!$aClient || $aClient->getAccountType() != 1) // check client is logged in

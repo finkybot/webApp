@@ -21,7 +21,6 @@ require_once $root . '/classes/mysql.php';
         function validateUser($usrId, $pwd)
         {
             $mysql = new Mysql();
-
             $this->accountType = false;
 
             $temp = $pwd . $usrId;
@@ -47,7 +46,6 @@ require_once $root . '/classes/mysql.php';
         }
 
 
-
         // setupImageList()
         // fetch the images for the client
         function setupImageList()
@@ -66,7 +64,6 @@ require_once $root . '/classes/mysql.php';
             return $files;
         }
 
-
         // userLogOut()
         // logs the user out and clears session
         function userLogOut()
@@ -84,7 +81,6 @@ require_once $root . '/classes/mysql.php';
             }
         }
 
-
         // getter helper functions
         // get user
         function getUser()
@@ -98,20 +94,17 @@ require_once $root . '/classes/mysql.php';
             return $this->imageLocation;
         }
 
-
         // get the image out of the array
         function getImageNameFromArray($i)
         {
             return $this->images[$i];
         }
 
-
         // get the image array
         function getImageArray()
         {
             return $this->images;
         }
-
 
         // return the size of the image array
         function getSizeOfImageArray()
