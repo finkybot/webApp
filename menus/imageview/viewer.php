@@ -77,7 +77,7 @@
         <div><img src="../../managers/imageLoader.php?val=' . $_SESSION['imageNum'] . '" style="max-width: 98vw; max-height: 98vh; object-fit: contain"/></div>';
       }
       echo'
-          <button class="menu fsButton" id="btnFullscreen" type="button">Toggle Fullscreen</button>
+          <button class="menu fsButton" id="toggleFullscreen" type="button">Toggle Fullscreen</button>
         </div>
       </form>   
       </div>
