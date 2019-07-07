@@ -1,6 +1,5 @@
 <?php
   require_once  '../classes/client.php';
-  require_once  '../includes/functions.php';
   session_start();
 
   // check a client object has been made

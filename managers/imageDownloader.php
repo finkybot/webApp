@@ -3,7 +3,6 @@
     // so for the time being I am using a php page to carry out image loading, I might update this to a 
     // method called by jquery at a later date
     require_once '../classes/client.php';
-    //require_once 'includes/functions.php';
     session_start();
 
     // ensure user is logged in

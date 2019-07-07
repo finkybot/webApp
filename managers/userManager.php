@@ -10,7 +10,6 @@
     */
 
     require_once '../classes/client.php';
-    require_once '../includes/functions.php';
     session_start();
     echo '<body style="background-color:SlateGrey">'; 
     echo '<div style ="font: 400 18px/1.8 Lato, sans-serif; color:AntiqueWhite">';
