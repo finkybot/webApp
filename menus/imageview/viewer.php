@@ -4,17 +4,9 @@
 
   // check a client aClient has be in
   $aClient = unserialize((base64_decode($_SESSION['clientSession'])));
-  if(!$aClient || $aClient->getAccountType() == 1)
+  if($aClient && strcmp($aClient->getAccountType(), 'CLIENT') == 0)
   {
-    if($aClient)
-    {
-      $aClient->userLogOut();
-      unset($aClient);
-    }
-    header('location: https://tm470gap/index.html');
-    exit;
-  }
-  echo'
+    echo'
     <!doctype html>
     <html lang="en">
     <head>
@@ -42,10 +34,8 @@
       $_SESSION['imageNum']--;
   }    
 
-  //if($_SESSION['imageNum'] < 0){$_SESSION['imageNum'] = 0;}
   if($_SESSION['imageNum'] < 0){$_SESSION['imageNum'] = sizeof($images)-1;}
   if($_SESSION['imageNum'] >= sizeof($images)){$_SESSION['imageNum'] = 0;}
-
 
   echo'
     <body>
@@ -83,3 +73,15 @@
       <script src="../../scripts/fullscreen.js"></script>
     </body>
     </html>';
+  }
+  else 
+  {
+    if($aClient)
+    {
+      $aClient->userLogOut();
+      unset($aClient);
+    }
+    header('location: https://tm470gap/index.html');
+    exit;
+  }
+

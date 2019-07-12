@@ -26,15 +26,15 @@
 
 
       <div class="caption top">
-          <form action="imageview/preview.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="setup account">SETUP CLIENT ACCOUNT</button></div></form>
+          <form action="imageview/viewer.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="setup account">SETUP CLIENT ACCOUNT</button></div></form>
       </div>
 
       <div class="caption mid">
-      <form action="imageview/preview.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="edit account">EDIT CLIENT ACCOUNT</button></div></form>
+      <form action="imageview/viewer.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="edit account">EDIT CLIENT ACCOUNT</button></div></form>
   </div>
 
       <div class="caption bot">
-        <form action="imageview/preview.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="manage images">MANAGE IMAGE UPLOADS</button></div></form>
+        <form action="imageview/viewer.php" method="post"><div class="menu"><button class="mainButton" type="submit" name="manage images">MANAGE IMAGE UPLOADS</button></div></form>
       </div>
   </body>
   </html>';

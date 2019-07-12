@@ -47,11 +47,10 @@
                 if(strcmp($result, 'CLIENT') == 0)
                 {
                     $_SESSION['status'] = 'authorized';
-                    // set the class variable
-                    $aClient = new User($usrId, $result);
 
-                    $srlClient = base64_encode(serialize($aClient));   //serialize the object
-                    $_SESSION['clientSession'] = $srlClient;    // pass the  serialised object into the session
+                    $aClient = new Client($usrId, $result); // create a new Client object
+                    $srlClient = base64_encode(serialize($aClient));   // serialize the Client ojbect
+                    $_SESSION['clientSession'] = $srlClient;    // pass the serialised object into the session
                     $_SESSION['imageNum'] = 0;
 
                     header("location: https://tm470gap/menus/clientMenu.php"); // move to client menu
@@ -60,14 +59,13 @@
                 if(strcmp($result, 'ADMIN') == 0)
                 {
                     $_SESSION['status'] = 'authorized';
-                    // set the class variable
-                    $aClient = new User($usrId, $result);
-
-                    $srlClient = base64_encode(serialize($aClient));   //serialize the object
-                    $_SESSION['clientSession'] = $srlClient;    // pass the  serialised object into the session
+       
+                    $aClient = new Admin($usrId, $result); // create a new Admin object
+                    $srlClient = base64_encode(serialize($aClient));   // serialize the Admin object
+                    $_SESSION['clientSession'] = $srlClient;    // pass the serialised object into the session
                     $_SESSION['imageNum'] = 0;
 
-                    header("location: https://tm470gap/menus/adminMenu.php"); 
+                    header("location: https://tm470gap/menus/adminMenu.php");  // move to the admin menu
                 }
             }
             else 
