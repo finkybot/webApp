@@ -5,50 +5,39 @@ absolute addresses for the classes and includes */
 $root = realpath($_SERVER["DOCUMENT_ROOT"]);    
 require_once $root . '/classes/image.php';      
 require_once $root . '/classes/mysql.php';      
-
-    class Client
+    class User
     {
         // Class variables
         private $user;
         private $imageLocation;
-        private $admin;
+        private $userType;
 
         // array for holding objects
         private $images;
 
-        // validateUser()
-        // checks if user is valid
-        function validateUser($usrId, $pwd)
+        // Constructor for Client
+        function __construct($usrID, $stat)
+        {
+            $this->user = $usrID;
+            $this->userType = $stat;
+
+            // get the image folder location & image list
+            $this->imageLocation    =       $this->setupLocation();
+            $this->images           =       $this->setupImageList();
+        }
+
+        // setupLocation()
+        // fetch the image folder location for the user
+        private function setupLocation()
         {
             $mysql = new Mysql();
-            $this->accountType = false;
-
-            $temp = $pwd . $usrId;
-            $temp = md5($temp);
-            $pwd = $temp . $pwd;
-            $result = $mysql->verifyUnamePwd($usrId, sha1($pwd));
-
-            if($result)
-            {
-                $_SESSION['status'] = 'authorized';
-
-                // set the class variables
-                $this->user = $usrId;
-                $this->imageLocation = $result[0];
-                $this->admin = $result[1];
-     
-                $this->images       =       $this->setupImageList();
-                // set data into an array
-
-                return true;
-            }
-            else return false;
+            return  $mysql->getFileLocation($this);  
         }
 
 
         // setupImageList()
         // fetch the images for the client
-        function setupImageList()
+        private function setupImageList()
         {
             $mysql = new Mysql();
             $result = $mysql->getImageList($this->user);  
@@ -112,10 +101,17 @@ require_once $root . '/classes/mysql.php';
             return sizeof($this->images);
         }
 
-        // get account type is this an admin or normal client
+        // get account type is this an userType or normal client
         function getAccountType()
         {
-            return $this->admin;
+            return $this->userType;
+        }
+
+        // getter helper functions
+        // get MySQL connection
+        private function getConn()
+        {
+            return $this->conn;
         }
     }
 

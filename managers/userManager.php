@@ -10,10 +10,12 @@
     */
 
     require_once '../classes/client.php';
+    require_once '../classes/mysql.php';
     session_start();
     echo '<body style="background-color:SlateGrey">'; 
     echo '<div style ="font: 400 18px/1.8 Lato, sans-serif; color:AntiqueWhite">';
     echo "<hr/> <h1>Connecting to server</h1> <hr/>";
+
     $aClient = unserialize((base64_decode($_SESSION['clientSession'])));
     if(isset($_POST['loggedout'])) // if the user is trying to log out
     {
@@ -26,29 +28,51 @@
     }
     else
     {
-        $aClient = new Client(); // create a new client object
-   
         echo "<p> validate user </p>";
         // check username and password fields on the login have data
         if($_POST && !empty($_POST['username']) && !empty($_POST['pwd']))
         {
+            $mysql = new Mysql();
     
-            $response = $aClient->validateUser($_POST['username'], $_POST['pwd']);
-            if($response)
+            $usrId = $_POST['username'];
+            $pwd = $_POST['pwd'];
+
+            $temp = $pwd . $usrId;
+            $temp = md5($temp);
+            $pwd = $temp . $pwd;
+            $result = $mysql->verifyUser($usrId, sha1($pwd));
+            
+            if($result)
             {
-                $srlClient = base64_encode(serialize($aClient));   //serialize the object
-                $_SESSION['clientSession'] = $srlClient;    // pass the  serialised object into the session
-                $_SESSION['imageNum'] = 0;
-                if($aClient->getAccountType() == 1) // if admin goto admin menu
+                if(strcmp($result, 'CLIENT') == 0)
                 {
-                    header("location: https://tm470gap/menus/adminMenu.php"); 
-                    return;    
+                    $_SESSION['status'] = 'authorized';
+                    // set the class variable
+                    $aClient = new User($usrId, $result);
+
+                    $srlClient = base64_encode(serialize($aClient));   //serialize the object
+                    $_SESSION['clientSession'] = $srlClient;    // pass the  serialised object into the session
+                    $_SESSION['imageNum'] = 0;
+
+                    header("location: https://tm470gap/menus/clientMenu.php"); // move to client menu
                 }
-                header("location: https://tm470gap/menus/clientMenu.php"); // move to client menu
+
+                if(strcmp($result, 'ADMIN') == 0)
+                {
+                    $_SESSION['status'] = 'authorized';
+                    // set the class variable
+                    $aClient = new User($usrId, $result);
+
+                    $srlClient = base64_encode(serialize($aClient));   //serialize the object
+                    $_SESSION['clientSession'] = $srlClient;    // pass the  serialised object into the session
+                    $_SESSION['imageNum'] = 0;
+
+                    header("location: https://tm470gap/menus/adminMenu.php"); 
+                }
             }
             else 
             {
-                unset($aClient);
+                unset($mysql);
                 echo "<p> User login Failed</p>";
                 header( "refresh:1;url=https://tm470gap/index.html" );
             }

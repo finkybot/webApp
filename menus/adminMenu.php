@@ -4,17 +4,9 @@
 
   // check a client object has been made
   $aClient = unserialize((base64_decode($_SESSION['clientSession'])));
-  if(!$aClient || $aClient->getAccountType() != 1) // check client is logged in
+  if($aClient && strcmp($aClient->getAccountType(), 'ADMIN') == 0) // check admin is logged in
   {
-    if($aClient)
-    {
-      $aClient->userLogOut();
-      unset($aClient);
-    }
-    header('location: https://tm470gap/index.html');
-    exit;
-  }
-  echo'
+    echo'
     <!doctype html>
     <html lang="en">
     <head>
@@ -46,3 +38,15 @@
       </div>
   </body>
   </html>';
+  }
+  else 
+  {
+    if($aClient)
+    {
+      $aClient->userLogOut();
+      unset($aClient);
+    }
+    header('location: https://tm470gap/index.html');
+    exit;
+  }
+

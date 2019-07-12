@@ -22,6 +22,80 @@
             }
         }
 
+        /* verifyUser($userId, $pwd) CODE REVISION new wya of validating users
+         * or inform user username/password is wrong
+         * $userId          username of the client
+         * $pwd             password of the client
+         */ 
+        function verifyUser($usrId, $pwd)
+        {
+            // note: remember I dont want to query image locations here so change this when I need to get both locations of the preview images and main images
+            $result = false;
+            $query = "SELECT client_type FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
+ 
+            // attempt to prepare query 
+            if($stmt = $this->conn->prepare($query)) // check the statement
+            {
+                // add paremeters and execute query
+                $stmt->bind_param('ss',$usrId, $pwd);
+                $stmt->execute();
+                $stmt->bind_result($aType);
+                if($stmt->fetch())
+                {
+                    $stmt->close();
+                    $result = $aType;
+                    $this->logAttempt($usrId,1); // log successful login attempt
+                }
+                else 
+                {
+                    if($this->verifyUname($usrId)) // check if the username is valid
+                    {
+                        echo "<p>password not recognised</p>";
+                        $this->logAttempt($usrId,0); // and log unsuccessful login attempt 
+                        return;
+                    }
+                }
+            }
+            else 
+            {
+                echo "<p>Database query is not valid </p>";
+                return;
+            }
+            $this->conn->close(); // close database connection
+            return $result; // return $result;
+        }
+
+        /* verifyUnamePwd($user, $pwd) get the location of users images
+         * $userId          username of the client
+         * $pwd             password of the client
+         */ 
+        function getFileLocation($usr)
+        {
+            $result = false;
+            $client = $usr->getUser();
+            $result = false; // set return var to false (default)
+            $query = "SELECT image_location FROM users WHERE username = ? LIMIT 1"; // SQL query
+ 
+            // attempt to prepare query 
+            if($stmt = $this->conn->prepare($query)) // check the statement
+            {
+                // add paremeters and execute query
+                $stmt->bind_param('s',$client);
+                $stmt->execute();
+
+                $stmt->bind_result($iLocation);
+
+                if($stmt->fetch())
+                {
+                    $stmt->close();
+                    $result = $iLocation; 
+                }
+            }
+
+            $this->conn->close(); // close database connection
+            return $result; // return $result;
+        }
+
         /* verifyUnamePwd($userId, $pwd) verify if the username and password is correct and authenticate
          * or inform user username/password is wrong
          * $userId          username of the client
@@ -33,7 +107,6 @@
             $result = array();
             $result[0] = false; // set return var to false (default)
             $result[1] = false;
-         // $query = "SELECT loc FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query: when creating the preview image builder I will need this
             $query = "SELECT image_location, client_type FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
  
             if(strcmp($usrId, 'unknown') !==0)
