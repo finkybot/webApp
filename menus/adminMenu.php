@@ -22,7 +22,8 @@
   <?php
     <body>
       <div class="floatb-menu">
-          <form action="../managers/userManager.php" method="post"><div class="menu"><button  type="submit" name="loggedout">Log out</a></div></form></div>
+          <form action="../managers/userManager.php" method="post"><div class="menu"><button  type="submit" name="loggedout">Log out</a></div></form>
+          <div class="menu"> <span class="border">' . $aClient->getClientFromList()->getUser() . '</span></div></div>
 
 
       <div class="caption top">

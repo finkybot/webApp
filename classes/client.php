@@ -77,6 +77,7 @@ class Client extends User
         $this->images           =       $this->setupImageList();
     }
 
+
     // setupImageList()
     // fetch the images for the client
     protected function setupImageList()
@@ -119,6 +120,8 @@ class Client extends User
 // Admin class inherits User
 class Admin extends User
 {
+    private $clients; // an Array of Client list
+
     // Constructor for Client
     function __construct($usrID, $stat)
     {
@@ -127,6 +130,30 @@ class Admin extends User
 
         // get the image folder location & image list
         $this->imageLocation    =       $this->setupLocation();
+        $this->clients          =       $this->setupClientList();
+    }
+
+    // setupClientList()
+    // setup a list of clients
+    protected function setupClientList()
+    {
+        $type = 'CLIENT';
+        $mysql = new Mysql();
+        $result = $mysql->getClientList($type); 
+        $clientList = array();
+    
+        foreach ($result as $value)
+        {
+            $tempClient = new Client($value, $type);
+            array_push($clientList, $tempClient);
+        }
+        return $clientList;
+    }
+
+    // return the size of the image array
+    public function getClientFromList()
+    {
+        return $this->clients[0];
     }
 }
 

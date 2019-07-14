@@ -185,6 +185,37 @@
         }
 
 
+        // behaviour: retrieve client list for admins
+        function getClientList($type)
+        {
+            $query = "SELECT username FROM users WHERE client_type = ?"; // SQL query selects the main images
+            // attempt to prepare query 
+            if($stmt = $this->conn->prepare($query)) // check the statement
+            {
+                // add paremeters and execute query
+                $stmt->bind_param('s',$type);
+                $stmt->execute();
+
+                $stmt->bind_result($userName);
+
+				$vals = array();
+                $i = 0;
+                
+                while($stmt->fetch())
+                {
+					$vals[$i] = $userName;
+		            $i++;                
+                }
+
+                $stmt->close();
+            }
+
+            $this->conn->close(); // close database connection
+            return $vals; // return $result;
+        }
+
+        
+
         /* private logAttempt($userId,) log users attempt to login on the database
          * $userId          username of the client
          * $state           success state of the login attempt
