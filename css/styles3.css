@@ -2,6 +2,10 @@ body, html {height: 100%; margin: 0; font: 400 18px/1.8 "Lato", sans-serif; colo
 body {background-image: url("../img/img_flwr1.jpg"); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;}
 form {display: inline-block}
 
+table {margin-right: auto; margin-left: auto;} /* Format for table */
+table.resultTab { width: 100%; text-align: center}
+table.normal { width: 100%; padding-left: 20px; padding-right: 20px}
+
 .caption {position: absolute; left: 0; width: 100%; text-align: center; color: #fff;}
 .caption span.border {background-color: #111; color: #fff; padding: 18px;}
 

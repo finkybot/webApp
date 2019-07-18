@@ -82,3 +82,43 @@
           } // if have the exif orientation info
         } // if function exists      
       } */
+
+
+    /** 
+    function createTable()
+    creates a table an populates its with values
+    **/
+    function createTable($tableInit, $fList)
+    {
+        echo $tableInit;
+        $row = 0;
+        $currentVal = 0;
+        $size = sizeof($fList);
+        $_SESSION['file'] = $fList;
+        while($row<=($size/4))
+        {
+            $column = 0;
+            echo "<tr>";
+            while($column<= 3)
+            {
+                if ($currentVal < $size)
+                {
+
+                    echo '<td>';
+                    //echo "<img src=\"image.php?val=" . $currentVal . "\" style=\"max-width: 150px; max-height: 150px; object-fit: contain\"/>";
+                    echo '<p>' . $currentVal . '</p>';
+                    echo '</td>';
+    
+                }
+                else 
+                {
+                    echo '<td> </td>';
+                }
+                $currentVal++;
+                $column++;
+            }
+            echo "</tr>";
+            $row++;
+        }
+        echo "</table>";
+    }
