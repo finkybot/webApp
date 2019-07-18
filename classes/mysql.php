@@ -11,7 +11,6 @@ class Mysql
 
 	// Constructor for Mysql
 	// attempts to establish a connection to the database server
-	// or inform the user if it has failed
 	function __construct()
 	{
 		echo "<p>establish connection</p>";
@@ -141,26 +140,21 @@ class Mysql
 			$stmt->bind_param('s',$usrId);
 			$stmt->execute();
 			$stmt->bind_result($userImage, $status);
-
 			$keys = array();
 			$vals = array();
-			$i = 0;
-					
+			$i = 0;					
 			while($stmt->fetch())
 			{
 				$keys[$i] = $userImage;
 				$vals[$i] = $status;
 				$i++;                
 			}
-
 			$stmt->close();
 		}
-
 		$result = array_combine($keys, $vals);
 		$this->conn->close();
 		return $result; 
 	}
-
 
 	// getClientList() retrieves client list for admins
 	function getClientList($type)
@@ -187,7 +181,6 @@ class Mysql
 		$this->conn->close();
 		return $vals;
 	}
-
 			
 	// private logAttempt() log users attempt to login on the database
 	private function logAttempt($usrId, $state)

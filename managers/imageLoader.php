@@ -14,6 +14,11 @@
       exit;
     }
 
+    if(strcmp($aClient->getAccountType(), 'ADMIN') == 0)
+    {
+      $aClient = $aClient->getCurrentClient();
+    }
+    
     // fetch a passed value to find current image 
     $loc = $aClient->getImageLocation() . "/";
     $current = $_GET['val'];

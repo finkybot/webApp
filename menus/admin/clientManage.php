@@ -38,7 +38,12 @@
               {
                   $aClient = $clients[$currentVal];
                   echo '<td>';
-                  echo '<p><h3 style="text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white">' . $aClient->getUser() . '</p>';
+                  echo '<form action="clientEdit.php" method="post">';
+                  echo '<div class="menu"><button class="mainButton" type="submit" name="setup account">
+                        <p><h3 style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black">' . $aClient->getUser() . 
+                        '</p>' . '</button></div>
+                        <input type="hidden" name="cClient" id="cClient" value="' . $currentVal . '">
+                        </form>';
                   echo '</td>'; 
               }
               else 

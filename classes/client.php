@@ -121,6 +121,7 @@ class Client extends User
 class Admin extends User
 {
 	private $clients; // an Array of Client list
+	private $currentClient;
 
 	// Constructor for Client
 	function __construct($usrID, $stat)
@@ -160,5 +161,17 @@ class Admin extends User
 	public function getClientFromList()
 	{
 		return $this->clients[0];
+	}
+
+	// get the current selected client
+	public function getCurrentClient()
+	{
+		return $this->currentClient;
+	}
+
+	// set the current client
+	public function setCurrentClient($aClient)
+	{
+	 	$this->currentClient = $aClient;
 	}
 }
