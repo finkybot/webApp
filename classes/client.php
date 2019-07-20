@@ -30,7 +30,7 @@ class User
 	// fetch the image folder location for the user
 	protected function setupLocation()
 	{
-		$mysql = new Mysql();
+		$mysql = new Mysql(1);
 		return  $mysql->getFileLocation($this);  
 	}
 
@@ -82,7 +82,7 @@ class Client extends User
 	// fetch the images for the client
 	protected function setupImageList()
 	{
-		$mysql = new Mysql();
+		$mysql = new Mysql(1);
 		$result = $mysql->getImageList($this->user);  
 		$files = array();
 		// $this->images = array();
@@ -97,7 +97,7 @@ class Client extends User
 	}
 
 	// get the image out of the array
-	public function getImageNameFromArray($i)
+	public function getImageFromArray($i)
 	{
 		return $this->images[$i];
 	}
@@ -139,7 +139,7 @@ class Admin extends User
 	protected function setupClientList()
 	{
 		$type = 'CLIENT';
-		$mysql = new Mysql();
+		$mysql = new Mysql(1);
 		$result = $mysql->getClientList($type); 
 		$clientList = array();
 	
@@ -158,9 +158,9 @@ class Admin extends User
 	}
 
 	// return a client from the clients array
-	public function getClientFromList()
+	public function getClientFromList($val)
 	{
-		return $this->clients[0];
+		return $this->clients[$val];
 	}
 
 	// get the current selected client

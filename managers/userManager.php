@@ -24,7 +24,7 @@
 		// check username and password fields on the login have data
 		if($_POST && !empty($_POST['username']) && !empty($_POST['pwd']))
 		{
-			$mysql = new Mysql();
+			$mysql = new Mysql(1);
 
 			$usrId = $_POST['username'];
 			$pwd = $_POST['pwd'];

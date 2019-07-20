@@ -11,9 +11,12 @@ class Mysql
 
 	// Constructor for Mysql
 	// attempts to establish a connection to the database server
-	function __construct()
+	function __construct($status)
 	{
-		echo "<p>establish connection</p>";
+		if($status)
+		{
+			echo "<p>establish connection</p>";
+		}
 		$this->conn = new mysqli(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 		if($this->conn->connect_errno > 0) //check if conn
 		{
@@ -219,5 +222,25 @@ class Mysql
 			}
 		}
 		return 'unknown';
+	}
+
+
+	// update the status of an image on the database
+	function changeImageStatus($state, $img)
+	{
+		$query = "UPDATE images SET purchased = ? WHERE image_name = ?"; 
+		if($stmt = $this->conn->prepare($query)) // check the statement
+		{
+			// add paremeters and execute query
+			$stmt->bind_param('ss',$state, $img);
+			$stmt->execute();
+			$stmt->close();
+		}
+		else 
+		{
+			echo "<script type='text/javascript'>alert('Image update failure');</script>";
+			return;
+		}
+		return TRUE;
 	}
 }

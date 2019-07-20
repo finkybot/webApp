@@ -56,6 +56,12 @@ class Image
 	{
 		return $this->status;
 	}
+
+	// set the status of the image
+	function setStatus($val)
+	{
+		$this->status = $val;
+	}
 }
 
 

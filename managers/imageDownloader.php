@@ -17,7 +17,7 @@
     $loc = $aClient->getImageLocation() . "/";
 
     // get current image and display it on the website
-    $image = $aClient->getImageNameFromArray($_SESSION['imageNum']);
+    $image = $aClient->getImageFromArray($_SESSION['imageNum']);
     $file = $loc . $image->getFileName();
     if (file_exists($file) && $image->getStatus() == 1) 
     {

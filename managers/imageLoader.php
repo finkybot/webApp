@@ -25,7 +25,7 @@
     if(is_numeric($current))
     {
         // get current image and display it on the website
-        $image = $aClient->getImageNameFromArray($current);
+        $image = $aClient->getImageFromArray($current);
         if($image->getStatus() == 1)
         {
           header('Content-Type: text/jpeg');
