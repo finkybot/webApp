@@ -228,19 +228,20 @@ class Mysql
 	// update the status of an image on the database
 	function changeImageStatus($state, $img)
 	{
+		$result = null;
 		$query = "UPDATE images SET purchased = ? WHERE image_name = ?"; 
 		if($stmt = $this->conn->prepare($query)) // check the statement
 		{
 			// add paremeters and execute query
 			$stmt->bind_param('ss',$state, $img);
-			$stmt->execute();
-			$stmt->close();
+			$result = $stmt->execute();
+			$stmt->close();;
 		}
 		else 
 		{
 			echo "<script type='text/javascript'>alert('Image update failure');</script>";
 			return;
 		}
-		return TRUE;
+		return $result;
 	}
 }

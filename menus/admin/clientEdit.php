@@ -41,34 +41,53 @@
 			{
 				if(in_array($aClient->getImageFromArray($i)->getFileName(), $imageFiles))
 				{
-					$mysql = new Mysql(NULL);
-					$result = $mysql->changeImageStatus(1, $aClient->getImageFromArray($i)->getFileName());
-					if($result)
-					{
-						$aClient->getImageFromArray($i)->setStatus(1);
-					}  
+			    $admin->changeImageStatus(1, $aClient->getImageFromArray($i));
 				}
 				else
 				{
-					$mysql = new Mysql(NULL);
-					$result = $mysql->changeImageStatus(0, $aClient->getImageFromArray($i)->getFileName());
-					if($result)
-					{
-						$aClient->getImageFromArray($i)->setStatus(0);	
-					} 
+					$admin->changeImageStatus(0, $aClient->getImageFromArray($i));
 				}	
 				$i++;
 			}
 			$srlClient = base64_encode(serialize($admin));   // serialize the Client ojbect
 			$_SESSION['clientSession'] = $srlClient;    // pass the serialised object into the session
-		}
-		echo'<table cellpadding="30" id="tData"><tr><td>
-		<p><h3 style="text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white">' . $aClient->getUser() . '</p><td><tr></table>';
+		}    
+    echo'<table>
+    <form method="post" action="">
+    
+    <tr><td style="text-align: right; padding: 15px"><label><h5 style="text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white">Username</label>
+    <input type="text" placeholder=' . $aClient->getUser() . ' name="username" required></td></tr>
+
+    <tr><td style="text-align: right; padding: 15px"><label><h5 style="text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white">Enter new password</label>
+    <input type="password" placeholder="Enter Password" id="pwd" required></td>
+    
+    <td style="text-align: right; padding: 15px"><label><h5 style="text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white">Re-enter new password</label>
+    <input type="password" placeholder="Enter Password" id="conPwd" required></td>
+    <td><button  type="submit" name="submit" >Submit</button></div></td></tr>
+    </form>    
+    </table>
+    
+    <script>
+    var pwd = document.getElementById("pwd"), confirmPwd = document.getElementById("conPwd");
+    function validatePassword()
+    {
+      if(pwd.value != confirmPwd.value) 
+      {
+        confirmPwd.setCustomValidity("Passwords do not match");
+      } 
+      else 
+      {
+        confirmPwd.setCustomValidity(\'\');
+      }
+    }
+    pwd.onchange = validatePassword;
+    confirmPwd.onkeyup = validatePassword;
+    </script>';
 
 		$row = 0;
 		$currentFile = 0;
-		echo '<table cellpadding="30" id="tData">';
-		echo '<form action="clientEdit.php" id="imageStat" method="post">';
+    echo '<table cellpadding="30" id="tData">';
+    echo '<form action="clientEdit.php" id="imageStat" method="post">';
 		while($row<=($size/4))
 		{
 			$column = 0;
@@ -85,12 +104,12 @@
 					if($aClient->getImageFromArray($currentFile)->getStatus() == 1)
 					{
 						echo '<h5 style="text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white"><input type="checkbox" name="status[]" value="'
-																						. $name = $aClient->getImageFromArray($currentFile)->getFileName() .'" checked>Purchased status';
+														. $name = $aClient->getImageFromArray($currentFile)->getFileName() .'" checked>Purchased status';
 					}
 					else 
 					{
 						echo '<h5 style="text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white"><input type="checkbox" name="status[]" value="'
-																									. $name = $aClient->getImageFromArray($currentFile)->getFileName() . '">Purchased status';
+														. $name = $aClient->getImageFromArray($currentFile)->getFileName() . '">Purchased status';
 					}
 					echo '</td>';
 				}

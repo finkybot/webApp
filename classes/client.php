@@ -151,6 +151,15 @@ class Admin extends User
 		return $clientList;
 	}
 
+	function changeImageStatus($state, $img)
+	{
+		$mysql = new Mysql(NULL);
+		if($mysql->changeImageStatus($state, $img->getFileName()))
+		{
+			$img->setStatus($state);
+		}
+	}
+
 	// return the client array
 	public function getClientList()
 	{
