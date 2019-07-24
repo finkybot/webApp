@@ -19,6 +19,13 @@ class User
 	{
 		return $this->user;
 	}
+
+	// setter helper functions
+	// set user
+	public function setUser($user)
+	{
+		$this->user = $user;
+	}
 	
 	// get account type is this an userType or normal client
 	public function getAccountType()
@@ -151,13 +158,36 @@ class Admin extends User
 		return $clientList;
 	}
 
+	// change the status of an image between purchased or otherwise
 	function changeImageStatus($state, $img)
 	{
 		$mysql = new Mysql(NULL);
-		if($mysql->changeImageStatus($state, $img->getFileName()))
+		if($mysql->changeImageStatus($state, $img->getFileName())) // if the database record is changed then,
 		{
-			$img->setStatus($state);
+			$img->setStatus($state); // update the image object
 		}
+	}
+
+	// update the username to a new userID
+	function changeUserName($user, $newUserID)
+	{
+		$mysql = new Mysql(NULL);
+		if($mysql->changeUserName($user->getUser(), $newUserID)) // if the database record is changed then,
+		{
+			$user->setUser($newUserID);
+		}
+	}
+
+	// update the username to a new userID
+	function changeUserPwd($user, $pwd)
+	{
+		//echo password_hash($pwd, PASSWORD_BCRYPT);
+		$mysql = new Mysql(NULL);
+		if($mysql->changePwd($user->getUser(), password_hash($pwd, PASSWORD_BCRYPT))) // if the database record is changed then,
+		{
+			return true;
+		}
+		return;
 	}
 
 	// return the client array

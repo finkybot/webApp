@@ -65,7 +65,7 @@ class Mysql
 		return $result; 
 	}
 
- // verifyUnamePwd() get the location of users images
+ // getFileLocation() get the location of users images
 	function getFileLocation($usr)
 	{
 		$result = false;
@@ -89,51 +89,7 @@ class Mysql
 		return $result; 
 	}
 
- // verifyUnamePwd() verify if the username and password is correct and authenticate
-	function verifyUnamePwd($usrId, $pwd)
-	{
-		$result = array();
-		$result[0] = false; 
-		$result[1] = false;
-		$query = "SELECT image_location, client_type FROM users WHERE username = ? AND password = ? LIMIT 1"; // SQL query
-		if(strcmp($usrId, 'unknown') !==0)
-		{
-			if($stmt = $this->conn->prepare($query)) 
-			{
-				// add paremeters and execute query
-				$stmt->bind_param('ss',$usrId, $pwd);
-				$stmt->execute();
-				$stmt->bind_result($iLocation, $aType);
-				if($stmt->fetch())
-				{
-					$stmt->close();
-					$result[0] = $iLocation; 
-					$result[1] = $aType;
-					$this->logAttempt($this->verifyUname($usrId),1); // log successful login attempt
-				}
-				else 
-				{
-					echo "<p>username or password not recognised </p>";
-					$this->logAttempt($this->verifyUname($usrId),0); // log unsuccessful login attempt 
-					return;
-				}
-			}
-			else 
-			{
-				echo "<p>Database query is not valid </p>";
-				return;
-			}
-		}
-		else
-		{
-			echo "<p>invalid username....</p>";
-			return;
-		}
-		$this->conn->close(); 
-		return $result;
-	}
-
-	// getIMageList() gets the file names for each image for a given user
+	// getImageList() gets the file names for each image for a given user
 	function getImageList($usrId)
 	{
 		$query = "SELECT image_name, purchased FROM images WHERE username = ?"; 
@@ -204,9 +160,8 @@ class Mysql
 		return TRUE;
 	}
 
-
- 	// private verifyUname() verify if the username exists
-	private function verifyUname($usrId)
+ 	// verifyUname() verify if the username exists
+	function verifyUname($usrId)
 	{  
 		$query = "SELECT username FROM users WHERE username = ? LIMIT 1"; // SQL query
 		if($stmt = $this->conn->prepare($query)) // check the statement
@@ -221,8 +176,24 @@ class Mysql
 				return $var;
 			}
 		}
-		return 'unknown';
+		return;
 	}
+
+	// private changePwd() change password for a given user
+	function changePwd($usrId, $pwd)
+	{  
+		$result = NULL;
+		$query = "UPDATE users SET password = ? WHERE username = ?";
+		if($stmt = $this->conn->prepare($query)) // check the statement
+		{
+			// add paremeters and execute query
+			$stmt->bind_param('ss',$pwd, $usrId);
+			$result = $stmt->execute();
+			$stmt->close();
+		}
+		return $result;
+	}
+	
 
 
 	// update the status of an image on the database
@@ -235,11 +206,32 @@ class Mysql
 			// add paremeters and execute query
 			$stmt->bind_param('ss',$state, $img);
 			$result = $stmt->execute();
-			$stmt->close();;
+			$stmt->close();
 		}
 		else 
 		{
 			echo "<script type='text/javascript'>alert('Image update failure');</script>";
+			return;
+		}
+		return $result;
+	}
+
+
+	// update the username of the client on the database
+	function changeUserName($userID, $newUserID)
+	{
+		$result = null;
+		$query = "UPDATE users SET username = ? WHERE username = ?"; 
+		if($stmt = $this->conn->prepare($query)) // check the statement
+		{
+			// add paremeters and execute query
+			$stmt->bind_param('ss',$newUserID, $userID);
+			$result = $stmt->execute();
+			$stmt->close();
+		}
+		else 
+		{
+			echo "<script type='text/javascript'>alert('user ID update failure');</script>";
 			return;
 		}
 		return $result;
